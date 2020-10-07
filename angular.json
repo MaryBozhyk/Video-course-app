@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "video-coursw-app": {
+    "video-course-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/video-coursw-app",
+            "outputPath": "dist/video-course-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "video-coursw-app:build"
+            "browserTarget": "video-course-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "video-coursw-app:build:production"
+              "browserTarget": "video-course-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "video-coursw-app:build"
+            "browserTarget": "video-course-app:build"
           }
         },
         "test": {
@@ -114,15 +114,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "video-coursw-app:serve"
+            "devServerTarget": "video-course-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "video-coursw-app:serve:production"
+              "devServerTarget": "video-course-app:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "video-coursw-app"
+  "defaultProject": "video-course-app"
 }
