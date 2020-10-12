@@ -1,0 +1,9 @@
+export { AddCourseButtonModule } from './add-course-button';
+export { BreadcrumbsModule } from './breadcrumbs';
+export { CourseModule } from './course';
+export { CourseSearchModule } from './course-search';
+export { CoursesListModule } from './courses-list';
+export { FooterModule } from './footer';
+export { HeaderModule } from './header';
+export { LogOffModule } from './log-off';
+export { LoginModule } from './login';

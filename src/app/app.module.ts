@@ -1,9 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { SharedModule } from './shared';
-import { CoursesPageModule } from './features';
+import { AppComponent } from '@app/app.component';
+import { CoreModule } from '@app/core';
+import { CoursesPageModule } from '@app/components/courses-page';
+import {
+  AddCourseButtonModule,
+  BreadcrumbsModule,
+  CourseModule,
+  CourseSearchModule,
+  CoursesListModule,
+  FooterModule,
+  HeaderModule,
+  LogOffModule,
+  LoginModule
+} from '@app/components';
 
 @NgModule({
   declarations: [
@@ -11,8 +22,17 @@ import { CoursesPageModule } from './features';
   ],
   imports: [
     BrowserModule,
-    SharedModule,
-    CoursesPageModule
+    CoreModule,
+    AddCourseButtonModule,
+    BreadcrumbsModule,
+    CourseModule,
+    CourseSearchModule,
+    CoursesListModule,
+    CoursesPageModule,
+    FooterModule,
+    HeaderModule,
+    LogOffModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
