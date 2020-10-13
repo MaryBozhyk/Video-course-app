@@ -3,18 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from '@app/app.component';
 import { CoreModule } from '@app/core';
-import { CoursesPageModule } from '@app/components/courses-page';
-import {
-  AddCourseButtonModule,
-  BreadcrumbsModule,
-  CourseModule,
-  CourseSearchModule,
-  CoursesListModule,
-  FooterModule,
-  HeaderModule,
-  LogOffModule,
-  LoginModule
-} from '@app/components';
+import { CoursesPageModule } from '@app/courses-page';
+import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
+import { FooterModule } from '@shared/components/footer';
+import { HeaderModule } from '@shared/components/header';
+import { LogOffButtonModule } from '@shared/components/log-off-button';
+import { LoginButtonModule } from '@shared/components/login-button';
 
 @NgModule({
   declarations: [
@@ -23,16 +17,12 @@ import {
   imports: [
     BrowserModule,
     CoreModule,
-    AddCourseButtonModule,
     BreadcrumbsModule,
-    CourseModule,
-    CourseSearchModule,
-    CoursesListModule,
     CoursesPageModule,
     FooterModule,
     HeaderModule,
-    LogOffModule,
-    LoginModule
+    LogOffButtonModule,
+    LoginButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LogOffComponent } from './log-off.component';
+import { LogOffButtonComponent } from './log-off-button.component';
 
-describe('LogOffComponent', () => {
-  let component: LogOffComponent;
-  let fixture: ComponentFixture<LogOffComponent>;
+describe('LogOffButtonComponent', () => {
+  let component: LogOffButtonComponent;
+  let fixture: ComponentFixture<LogOffButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogOffComponent ]
+      declarations: [ LogOffButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogOffComponent);
+    fixture = TestBed.createComponent(LogOffButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
