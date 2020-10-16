@@ -9,6 +9,7 @@ import { FooterModule } from '@shared/components/footer';
 import { HeaderModule } from '@shared/components/header';
 import { LogOffButtonModule } from '@shared/components/log-off-button';
 import { LoginButtonModule } from '@shared/components/login-button';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginButtonModule } from '@shared/components/login-button';
     FooterModule,
     HeaderModule,
     LogOffButtonModule,
-    LoginButtonModule
+    LoginButtonModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

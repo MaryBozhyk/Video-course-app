@@ -1,10 +1,17 @@
 <app-header>
-    <app-login-button></app-login-button>
-    <app-log-off-button></app-log-off-button>
+    <div class="login-block">
+        <app-login-button></app-login-button>
+        <app-log-off-button></app-log-off-button>
+    </div>    
 </app-header>
 <app-breadcrumbs>
-    <a href="#">Courses</a>
+    <a href="#" class="breadcrumbs-txt">Courses</a>
 </app-breadcrumbs>
 <app-course-search></app-course-search>
-<app-add-course-button></app-add-course-button>
-<app-courses-list></app-courses-list>
+<app-add-course-button (addCourse)="onAddNewCourse()"></app-add-course-button>
+<app-courses-list
+    [courses]="courses" 
+    (delete)="onDeleteCourse($event)"
+    (edit)="onEditCourse($event)"
+    (loadmore)="onLoadMoreCourses()">
+</app-courses-list>

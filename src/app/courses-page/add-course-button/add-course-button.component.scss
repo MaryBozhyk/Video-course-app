@@ -1,0 +1,45 @@
+@import "variables";
+
+:host {
+    display: block;
+    margin: 0 85px 15px auto;
+}
+
+.add-btn {
+    border-radius: 3px;
+	background: color(pacificBlue);
+    padding: 4px 13px;
+    display: flex;
+    align-items: center;
+    line-height: 24px;
+	letter-spacing: -0.1px;
+    color: color(white);
+    margin-left: auto;
+	font-size: 14px;
+	font-family: font(semiBold);
+	text-transform: none;
+    font-weight: 600;
+    border: none;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: color(deepSkyBlue1);
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active {
+        background-color: color(teal1);
+    }
+}
+
+.add-ic {
+    border: 1px solid color(white);
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    margin-right: 8px;
+}
