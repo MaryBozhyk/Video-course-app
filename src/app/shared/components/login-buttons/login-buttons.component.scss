@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'mixins';
+
+.button {
+  @include change-focus-view(color(whiteShadow));
+  line-height: 24px;
+  height: 24px;
+  letter-spacing: 0;
+  color: color(white);
+  font-size: 14px;
+  font-family: font(regular);
+  text-transform: none;
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.login-button {
+  margin-right: 24px;
+}
+
+.icon {
+  margin-top: 3px;
+  margin-right: 8px;
+}
