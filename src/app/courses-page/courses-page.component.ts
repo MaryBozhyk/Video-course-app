@@ -10,7 +10,7 @@ import { Course } from '@app/models';
 export class CoursesPageComponent implements OnInit {
   courses: Course[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.courses = [
@@ -22,7 +22,8 @@ export class CoursesPageComponent implements OnInit {
           hours: 1,
           minutes: 38
         },
-        description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
+        description:
+          'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
       },
       {
         id: '2',
@@ -32,7 +33,8 @@ export class CoursesPageComponent implements OnInit {
           hours: 1,
           minutes: 38
         },
-        description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
+        description:
+          'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
       },
       {
         id: '3',
@@ -42,7 +44,8 @@ export class CoursesPageComponent implements OnInit {
           hours: 1,
           minutes: 38
         },
-        description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
+        description:
+          'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
       }
     ];
   }

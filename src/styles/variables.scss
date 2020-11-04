@@ -1,41 +1,44 @@
 $colors: (
-  white: #FFFFFF,
-  whiteSmoke: #F8F8F8,
-  linkWater: #CED0DB,
+  white: #ffffff,
+  whiteShadow: rgba(255, 255, 255, 0.5),
+  whiteSmoke: #f8f8f8,
+  linkWater: #ced0db,
   manatee: #858997,
-  rhino: #464A5A,
-  gunPowder: #474A59,
+  rhino: #464a5a,
+  gunPowder: #474a59,
   blackRock: #303240,
   nightRider: #333333,
-  pacificBlue: #009ECC,
-  deepSkyBlue1: #4BCFE5,
-  cornfloweBlue: #5681EE,
-  teal1: #1887BB,  
-  lasPalmas: #C8DE49,
-  olive1: #67A300,
-  vidaLoca: #62A231
+  pacificBlue: #009ecc,
+  pacificBlueShadow: rgba(0, 158, 204, 0.5),
+  deepSkyBlue1: #4bcfe5,
+  cornfloweBlue: #5681ee,
+  teal1: #1887bb,
+  lasPalmas: #c8de49,
+  olive1: #67a300,
+  oliveShadow: rgba(137, 176, 53, 0.5),
+  vidaLoca: #62a231
 );
 
 $fonts: (
-    regular: "Source Sans Pro Regular",
-    semiBold: "Source Sans Pro Semibold",
-    bold: "Source Sans Pro Bold"
+  regular: 'Source Sans Pro Regular',
+  semiBold: 'Source Sans Pro Semibold',
+  bold: 'Source Sans Pro Bold'
 );
 
 @function color($key) {
-    @if map-has-key($colors, $key) {
-      @return map-get($colors, $key);
-    }
-   
-    @warn "Unknown `#{$key}` in $colors.";
-    @return null;
-};
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $colors.";
+  @return null;
+}
 
 @function font($type) {
-	@if map-has-key($fonts, $type) {
-        @return map-get($fonts, $type);
+  @if map-has-key($fonts, $type) {
+    @return map-get($fonts, $type);
 
-        @warn "Unknown `#{$type}` in $fonts.";
-        @return null;
-	}
+    @warn "Unknown `#{$type}` in $fonts.";
+    @return null;
+  }
 }

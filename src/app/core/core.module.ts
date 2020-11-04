@@ -3,14 +3,12 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule]
 })
 export class CoreModule {
   public constructor(@SkipSelf() @Optional() parent: CoreModule) {
     if (parent) {
       throw new Error(`${parent.constructor.name} has already been loaded.`);
-  }
+    }
   }
 }

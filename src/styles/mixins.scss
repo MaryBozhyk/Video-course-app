@@ -1,0 +1,10 @@
+@mixin change-focus-view($color) {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem $color;
+  }
+
+  ::-moz-focus-inner {
+    border: 0;
+  }
+}

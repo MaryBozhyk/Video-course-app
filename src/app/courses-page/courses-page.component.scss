@@ -1,21 +1,59 @@
-@import "variables";
+@import 'variables';
+@import 'mixins';
 
 :host {
-    background-color: color(whiteSmoke);
-    display: block;
-	min-height: calc(100vh - 60px);
-	padding-bottom: 30px;
+  background-color: color(whiteSmoke);
+  display: block;
+  min-height: calc(100vh - 60px);
+  padding-bottom: 30px;
 }
 
 .breadcrumbs-txt {
-    line-height: 24px;
-	height: 24px;
-	letter-spacing: 0;
-	color: color(rhino);
-	font-size: 14px;
-	font-family: font(bold);
-	text-transform: none;
-	text-align: left;
-    font-weight: 700;
-    text-decoration: none;
+  line-height: 24px;
+  height: 24px;
+  letter-spacing: 0;
+  color: color(rhino);
+  font-size: 14px;
+  font-family: font(bold);
+  text-transform: none;
+  text-align: left;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.add-btn {
+  @include change-focus-view(color(pacificBlueShadow));
+  border-radius: 3px;
+  background: color(pacificBlue);
+  margin: 0 85px 15px auto;
+  padding: 4px 13px;
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+  letter-spacing: -0.1px;
+  color: color(white);
+  margin-left: auto;
+  font-size: 14px;
+  font-family: font(semiBold);
+  text-transform: none;
+  font-weight: 600;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: color(deepSkyBlue1);
+  }
+
+  &:active {
+    background-color: color(teal1);
+  }
+}
+
+.add-ic {
+  border: 1px solid color(white);
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  line-height: 16px;
+  margin-right: 8px;
 }

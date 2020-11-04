@@ -1,44 +1,42 @@
-@import "variables";
+@import 'variables';
+@import 'mixins';
 
 :host {
-    margin: 21px auto 0 85px;
-    display: block;
+  margin: 21px auto 0 85px;
+  display: block;
 }
 
 .courses-search {
-    border-radius: 3px;
-    border: 1px solid color(linkWater);
-    background: color(white);
-    box-sizing: border-box;
-    height: 36px;
-    width: 240px;
-    margin-right: 12px;
-    padding: 9px 12px;
+  border-radius: 3px;
+  border: 1px solid color(linkWater);
+  background: color(white);
+  box-sizing: border-box;
+  height: 36px;
+  width: 240px;
+  margin-right: 12px;
+  padding: 9px 12px;
 }
 
 .search-btn {
-    line-height: 30px;
-    letter-spacing: -0.08px;
-    color: color(white);
-    font-size: 14px;
-    font-family: font(regular);
-    text-transform: none;
-    font-weight: 600;
-    border-radius: 3px;
-    background: color(olive1);
-    padding: 3px 17px;
-    border: none;
+  @include change-focus-view(color(oliveShadow));
+  line-height: 30px;
+  letter-spacing: -0.08px;
+  color: color(white);
+  font-size: 14px;
+  font-family: font(regular);
+  text-transform: none;
+  font-weight: 600;
+  border-radius: 3px;
+  background: color(olive1);
+  padding: 3px 17px;
+  border: none;
 
-    &:hover {
-        cursor: pointer;
-        background-color: color(lasPalmas);
-    }
+  &:hover {
+    cursor: pointer;
+    background-color: color(lasPalmas);
+  }
 
-    &:focus {
-        outline: none;
-    }
-
-    &:focus {
-        background-color: color(vidaLoca);
-    }
+  &:active {
+    background-color: color(vidaLoca);
+  }
 }

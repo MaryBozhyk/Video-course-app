@@ -7,14 +7,11 @@ import { CoursesPageModule } from '@app/courses-page';
 import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
 import { FooterModule } from '@shared/components/footer';
 import { HeaderModule } from '@shared/components/header';
-import { LogOffButtonModule } from '@shared/components/log-off-button';
-import { LoginButtonModule } from '@shared/components/login-button';
+import { LoginButtonsModule } from '@shared/components/login-buttons';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CoreModule,
@@ -22,11 +19,10 @@ import { AppRoutingModule } from './app-routing.module';
     CoursesPageModule,
     FooterModule,
     HeaderModule,
-    LogOffButtonModule,
-    LoginButtonModule,
+    LoginButtonsModule,
     AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

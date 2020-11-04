@@ -1,23 +1,23 @@
-@import "variables";
+@import 'variables';
 
 :host {
-    position: sticky;
-    display: block;
-    bottom: 0;
-    left: 0;
-    background: color(blackRock);
-    height: 60px;
-    width: 100%;
-    padding: 19px 85px;
+  position: sticky;
+  display: block;
+  bottom: 0;
+  left: 0;
+  background: color(blackRock);
+  height: 60px;
+  width: 100%;
+  padding: 19px 85px;
 }
 
 .text {
-    line-height: 24px;
-	height: 24px;
-	letter-spacing: 0;
-	color: color(white);
-	font-size: 12px;
-	font-family: font(regular);
-	text-transform: none;
-	text-align: right;
+  line-height: 24px;
+  height: 24px;
+  letter-spacing: 0;
+  color: color(white);
+  font-size: 12px;
+  font-family: font(regular);
+  text-transform: none;
+  text-align: right;
 }

@@ -14,10 +14,9 @@ export class CoursesListComponent implements OnInit {
   @Output() delete = new EventEmitter<Course>();
   @Output() loadmore = new EventEmitter<void>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onDeleteCourse(course: Course): void {
     this.delete.emit(course);
