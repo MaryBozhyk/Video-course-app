@@ -1,12 +1,17 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { Course } from '@app/models';
-import { CourseComponent } from '../course';
+import { CourseComponent } from './course.component';
 
-import { CoursesListComponent } from './courses-list.component';
-
-const testCourses = [
-  {
+@Component({
+  template: `
+    <app-course [course]="course" (delete)="onDeleteCourse($event)" (edit)="onEditCourse($event)"> </app-course>
+  `
+})
+class TestHostComponent {
+  course = {
     id: '1',
     title: 'Video Course 1. Name tag',
     creationDate: new Date('2020, 08, 28'),
@@ -16,55 +21,51 @@ const testCourses = [
     },
     description:
       'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
-  }
-];
+  };
+  deletedCourse: Course;
+  editedCourse: Course;
 
-describe('CoursesListComponent', () => {
-  let component: CoursesListComponent;
-  let fixture: ComponentFixture<CoursesListComponent>;
+  onDeleteCourse(course: Course): void {
+    this.deletedCourse = course;
+  }
+
+  onEditCourse(course: Course): void {
+    this.editedCourse = course;
+  }
+}
+
+describe('CourseComponent', () => {
+  let testHost: TestHostComponent;
+  let fixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CoursesListComponent, CourseComponent]
+      declarations: [CourseComponent, TestHostComponent]
     });
-    fixture = TestBed.createComponent(CoursesListComponent);
-    component = fixture.componentInstance;
-    component.courses = testCourses;
+    fixture = TestBed.createComponent(TestHostComponent);
+    testHost = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should raise load-more event when clicked', () => {
-    const loadMoreBtn = fixture.debugElement.query(By.css('.txt'));
-    let loadMore: boolean;
-    component.loadmore.subscribe(() => loadMore = true);
-
-    loadMoreBtn.triggerEventHandler('click', null);
-    expect(loadMore).toBe(true);
   });
 
   it('should show correct title', () => {
     const courseTitle = fixture.debugElement.query(By.css('.title'));
     const courseTitleEl = courseTitle.nativeElement;
-    expect(courseTitleEl.textContent).toContain(component.courses[0].title);
+    expect(courseTitleEl.textContent).toContain(testHost.course.title);
   });
 
   it('should show correct time', () => {
     const courseTime = fixture.debugElement.query(By.css('.time'));
     const courseTimeEl = courseTime.nativeElement;
-    expect(courseTimeEl.textContent).toContain(component.courses[0].duration.hours);
-    expect(courseTimeEl.textContent).toContain(component.courses[0].duration.minutes);
+    expect(courseTimeEl.textContent).toContain(testHost.course.duration.hours);
+    expect(courseTimeEl.textContent).toContain(testHost.course.duration.minutes);
   });
 
   it('should show correct date', () => {
     const courseDate = fixture.debugElement.query(By.css('.date'));
     const courseTitleEl = courseDate.nativeElement;
-    const expectedMonth = component.courses[0].creationDate.getMonth() + 1;
-    const expectedDay = component.courses[0].creationDate.getDate();
-    const expestedYear = component.courses[0].creationDate.getFullYear().toString().substr(-2);
+    const expectedMonth = testHost.course.creationDate.getMonth() + 1;
+    const expectedDay = testHost.course.creationDate.getDate();
+    const expestedYear = testHost.course.creationDate.getFullYear().toString().substr(-2);
     const courseTitlePipedEl = `${expectedMonth}/${expectedDay}/${expestedYear}`;
     expect(courseTitleEl.textContent).toContain(courseTitlePipedEl);
   });
@@ -72,24 +73,20 @@ describe('CoursesListComponent', () => {
   it('should show correct description', () => {
     const courseDescription = fixture.debugElement.query(By.css('.information'));
     const courseDescriptionEl = courseDescription.nativeElement;
-    expect(courseDescriptionEl.textContent).toContain(component.courses[0].description);
+    expect(courseDescriptionEl.textContent).toContain(testHost.course.description);
   });
 
   it('should raise edit event when clicked (triggerEventHandler)', () => {
     const editBtn = fixture.debugElement.query(By.css('.edit-btn'));
-    let selectedCourse: Course;
-    component.edit.subscribe((course: Course) => selectedCourse = course);
 
     editBtn.triggerEventHandler('click', null);
-    expect(selectedCourse).toBe(component.courses[0]);
+    expect(testHost.editedCourse).toBe(testHost.course);
   });
 
   it('should raise delete event when clicked (triggerEventHandler)', () => {
     const deleteBtn = fixture.debugElement.query(By.css('.delete-btn'));
-    let selectedCourse: Course;
-    component.delete.subscribe((course: Course) => selectedCourse = course);
 
     deleteBtn.triggerEventHandler('click', null);
-    expect(selectedCourse).toBe(component.courses[0]);
+    expect(testHost.deletedCourse).toBe(testHost.course);
   });
 });

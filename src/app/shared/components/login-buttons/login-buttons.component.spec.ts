@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginButtonsComponent } from './login-buttons.component';
 
@@ -6,13 +6,10 @@ describe('LoginButtonsComponent', () => {
   let component: LoginButtonsComponent;
   let fixture: ComponentFixture<LoginButtonsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LoginButtonsComponent]
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
+    });
     fixture = TestBed.createComponent(LoginButtonsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
