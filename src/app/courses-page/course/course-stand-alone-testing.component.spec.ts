@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Course } from '@app/models';
 
 import { CourseComponent } from './course.component';
 
@@ -28,10 +27,6 @@ describe('CourseComponent', () => {
     component = fixture.componentInstance;
     component.course = testCourse;
     fixture.detectChanges();
-  });
-
-  afterEach(() => {
-    fixture.destroy();
   });
 
   it('should show correct title', () => {
@@ -63,21 +58,19 @@ describe('CourseComponent', () => {
     expect(courseDescriptionEl.textContent).toContain(testCourse.description);
   });
 
-  it('should raise edit event when clicked (triggerEventHandler)', () => {
+  it('should raise edit item', () => {
+    spyOn(component.edit, 'emit');
     const editBtn = fixture.debugElement.query(By.css('.edit-btn'));
-    let selectedCourse: Course;
-    component.edit.subscribe((course: Course) => selectedCourse = course);
 
     editBtn.triggerEventHandler('click', null);
-    expect(selectedCourse).toBe(testCourse);
+    expect(component.edit.emit).toHaveBeenCalledWith(testCourse);
   });
 
-  it('should raise delete event when clicked (triggerEventHandler)', () => {
+  it('should raise delete item', () => {
+    spyOn(component.delete, 'emit');
     const deleteBtn = fixture.debugElement.query(By.css('.delete-btn'));
-    let selectedCourse: Course;
-    component.delete.subscribe((course: Course) => selectedCourse = course);
 
     deleteBtn.triggerEventHandler('click', null);
-    expect(selectedCourse).toBe(testCourse);
+    expect(component.delete.emit).toHaveBeenCalledWith(testCourse);
   });
 });

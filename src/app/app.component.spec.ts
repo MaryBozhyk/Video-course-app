@@ -1,20 +1,17 @@
-import { Component } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { FooterModule } from './shared/components/footer';
 
-@Component({ selector: 'router-outlet', template: '' })
-export class RouterOutletStubComponent {}
-
-@Component({ selector: 'app-footer', template: '' })
-class FooterStubComponent {}
+import { ngMocks } from 'ng-mocks';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AppComponent, RouterOutletStubComponent, FooterStubComponent]
-    }).compileComponents();
-  }));
+  beforeEach(() => {
+    TestBed.configureTestingModule(
+      ngMocks.guts(AppComponent, [FooterModule, RouterModule.forRoot([])])
+    ).compileComponents();
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

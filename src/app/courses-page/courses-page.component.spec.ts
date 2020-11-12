@@ -1,42 +1,17 @@
-import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Course } from '@app/models';
 
 import { CoursesPageComponent } from './courses-page.component';
+import { CoursesPageModule } from './courses-page.module';
 
-@Component({ selector: 'app-header', template: '' })
-class HeaderStubComponent { }
-
-@Component({ selector: 'app-login-buttons', template: '' })
-class LoginButtonsStubComponent { }
-
-@Component({ selector: 'app-breadcrumbs', template: '' })
-class BreadcrumbsStubComponent { }
-
-@Component({ selector: 'app-course-search', template: '' })
-class CourseSearchStubComponent { }
-
-@Component({ selector: 'app-courses-list', template: '' })
-class CoursesListStubComponent {
-  @Input() courses: Course[];
-}
+import { ngMocks } from 'ng-mocks';
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
   let fixture: ComponentFixture<CoursesPageComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        CoursesPageComponent,
-        HeaderStubComponent,
-        LoginButtonsStubComponent,
-        BreadcrumbsStubComponent,
-        CourseSearchStubComponent,
-        CoursesListStubComponent
-      ]
-    });
+    TestBed.configureTestingModule(ngMocks.guts(CoursesPageComponent, CoursesPageModule));
     fixture = TestBed.createComponent(CoursesPageComponent);
     component = fixture.componentInstance;
     console.log = jasmine.createSpy('log');
@@ -47,24 +22,38 @@ describe('CoursesPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should raise add-new-course event when clicked', () => {
+  it('should raise add-new-course', () => {
+    spyOn(component, 'onAddNewCourse');
     const loadMoreBtn = fixture.debugElement.query(By.css('.add-btn'));
 
     loadMoreBtn.triggerEventHandler('click', null);
+    expect(component.onAddNewCourse).toHaveBeenCalled();
+  });
+
+  // TODO: Should be replaced when logic to the method will be added
+  it('add method should show correct result', () => {
+    component.onAddNewCourse();
     expect(console.log).toHaveBeenCalledWith('Add new course');
   });
 
-  it('should show correct result on delete', () => {
+  // TODO: Should be replaced when logic to the method will be added
+  it('delete method should show correct result', () => {
     component.onDeleteCourse(component.courses[0]);
-    expect(console.log).toHaveBeenCalledWith(`Delete from parent ${component.courses[0].title} with id ${component.courses[0].id}`);
+    expect(console.log).toHaveBeenCalledWith(
+      `Delete from parent ${component.courses[0].title} with id ${component.courses[0].id}`
+    );
   });
 
-  it('should show correct result on edit', () => {
+  // TODO: Should be replaced when logic to the method will be added
+  it('edit method should show correct result', () => {
     component.onEditCourse(component.courses[0]);
-    expect(console.log).toHaveBeenCalledWith(`Edit from parent ${component.courses[0].title} with id ${component.courses[0].id}`);
+    expect(console.log).toHaveBeenCalledWith(
+      `Edit from parent ${component.courses[0].title} with id ${component.courses[0].id}`
+    );
   });
 
-  it('should show correct result on load more', () => {
+  // TODO: Should be replaced when logic to the method will be added
+  it('load more method should show correct result', () => {
     component.onLoadMoreCourses();
     expect(console.log).toHaveBeenCalledWith('Load more courses');
   });
