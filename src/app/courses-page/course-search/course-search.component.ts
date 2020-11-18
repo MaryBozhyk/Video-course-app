@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-course-search',
@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./course-search.component.scss']
 })
 export class CourseSearchComponent {
+  @Output() searchTerm = new EventEmitter<string>();
+
   value: string;
 
   onClick(): void {
-    console.log(`You search: ${this.value}`);
+    this.searchTerm.emit(this.value);
   }
 }

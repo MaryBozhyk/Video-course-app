@@ -1,23 +1,31 @@
 <header class="header-block">
-    <h3 class="title">{{course.title}}</h3>
-    <section class="date-time-block">
-        <div class="time-block">
-            <p class="time"><img src="assets/icons/ic_clock.svg" alt="img"
-                    class="icon date-time-icon"><span>{{course.duration.hours}}h {{course.duration.minutes}}min</span>
-            </p>
-        </div>
-        <div class="date-block">
-            <p class="date"><img src="assets/icons/ic_calendar.svg" alt="img"
-                    class="icon date-time-icon"><span>{{course.creationDate | date: 'shortDate'}}</span></p>
-        </div>
-    </section>
+  <article class="title-block">
+    <h3 class="title">{{ course.title | uppercase }}</h3>
+    <img src="assets/icons/ic_star.svg" alt="img" class="icon star-icon" *ngIf="course.topRated" />
+  </article>
+  <section class="date-time-block">
+    <div class="time-block">
+      <p class="time">
+        <img src="assets/icons/ic_clock.svg" alt="img" class="icon date-time-icon" />
+        <span>{{ course.duration | duration}}</span>
+      </p>
+    </div>
+    <div class="date-block">
+      <p class="date">
+        <img src="assets/icons/ic_calendar.svg" alt="img" class="icon date-time-icon" />
+        <span>{{ course.creationDate | date: 'shortDate' }}</span>
+      </p>
+    </div>
+  </section>
 </header>
 <section class="info-block">
-    <p class="information">{{course.description}}</p>
-    <div class="buttons-block">
-        <button class="edit-btn btn" (click)="onEdit()"><img src="assets/icons/ic_edit.svg" alt="img"
-                class="icon">Edit</button>
-        <button class="delete-btn btn" (click)="onDelete()"><img src="assets/icons/ic_delete.svg" alt="img"
-                class="icon">Delete</button>
-    </div>
+  <p class="information">{{ course.description }}</p>
+  <div class="buttons-block">
+    <button class="edit-btn btn" (click)="onEdit()">
+      <img src="assets/icons/ic_edit.svg" alt="img" class="icon" />Edit
+    </button>
+    <button class="delete-btn btn" (click)="onDelete()">
+      <img src="assets/icons/ic_delete.svg" alt="img" class="icon" />Delete
+    </button>
+  </div>
 </section>
