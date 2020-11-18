@@ -13,8 +13,8 @@ describe('CourseSearchComponent', () => {
   let buttonEl: DebugElement;
   const defaultValue = 'course1';
 
-  beforeEach(() => {
-    MockBuilder(CourseSearchComponent).keep(FormsModule);
+  beforeEach(async () => {
+    await MockBuilder(CourseSearchComponent).keep(FormsModule);
     fixture = TestBed.createComponent(CourseSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
