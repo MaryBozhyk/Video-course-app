@@ -6,7 +6,8 @@ import { Course } from '@app/models';
 })
 export class OrderByPipe implements PipeTransform {
   transform(arr: Course[]): Course[] {
-    return arr.sort((a, b) => this.newestFirst(a, b));
+    const copy = [...arr];
+    return copy.sort((a, b) => this.newestFirst(a, b));
   }
 
   private newestFirst(courseA, courseB) {
