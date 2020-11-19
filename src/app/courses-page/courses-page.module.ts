@@ -9,10 +9,22 @@ import { CoursesListComponent } from './courses-list';
 import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
 import { HeaderModule } from '@shared/components/header';
 import { LoginButtonsModule } from '@shared/components/login-buttons';
+import { CoursesCreationDirective } from './directives';
+import { DurationPipe, OrderByPipe, FilterPipe } from './pipes';
 
 @NgModule({
-  declarations: [CoursesPageComponent, CourseComponent, CourseSearchComponent, CoursesListComponent],
+  declarations: [
+    CoursesPageComponent,
+    CourseComponent,
+    CourseSearchComponent,
+    CoursesListComponent,
+    CoursesCreationDirective,
+    DurationPipe,
+    OrderByPipe,
+    FilterPipe
+  ],
   imports: [CommonModule, FormsModule, BreadcrumbsModule, HeaderModule, LoginButtonsModule],
-  exports: [CoursesPageComponent]
+  exports: [CoursesPageComponent],
+  providers: [FilterPipe]
 })
 export class CoursesPageModule {}

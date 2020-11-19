@@ -32,12 +32,11 @@ describe('CourseSearchComponent', () => {
     expect(component.onClick).toHaveBeenCalled();
   });
 
-  // TODO: Should be replaced when logic to the method will be added
-  xit('onClick method should show correct result', () => {
-    console.log = jasmine.createSpy('log');
+  it('should raise search item', () => {
     component.value = defaultValue;
-    fixture.detectChanges();
+    spyOn(component.searchTerm, 'emit');
+
     component.onClick();
-    expect(console.log).toHaveBeenCalledWith(`You search: ${defaultValue}`);
+    expect(component.searchTerm.emit).toHaveBeenCalledWith(defaultValue);
   });
 });

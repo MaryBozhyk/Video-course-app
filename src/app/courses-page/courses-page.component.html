@@ -4,10 +4,13 @@
 <app-breadcrumbs>
     <a href="#" class="breadcrumbs-txt">Courses</a>
 </app-breadcrumbs>
-<app-course-search></app-course-search>
+<app-course-search (searchTerm)="onSearchCourse($event)"></app-course-search>
 <button class="add-btn" (click)="onAddNewCourse()">
     <div class="add-ic">+</div> Add course
 </button>
-<app-courses-list [courses]="courses" (delete)="onDeleteCourse($event)" (edit)="onEditCourse($event)"
-    (loadmore)="onLoadMoreCourses()">
+<app-courses-list [courses]="filteredCourses" (delete)="onDeleteCourse($event)" (edit)="onEditCourse($event)"
+    (loadmore)="onLoadMoreCourses()" *ngIf="hasCourses; else noDataBlock">
 </app-courses-list>
+<ng-template #noDataBlock>
+    <h3 class="no-courses">No data. Feel free to add new course.</h3>
+</ng-template>
