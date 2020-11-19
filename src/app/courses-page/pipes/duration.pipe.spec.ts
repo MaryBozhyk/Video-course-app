@@ -23,12 +23,12 @@ describe('DurationPipe', () => {
   it('should not return empty value in case of incomming data equal null', () => {
     const mockData = null;
     const result = pipe.transform(mockData);
-    expect(result).toBe('');
+    expect(result).toBe('-');
   });
 
   it('should not return empty value in case of incomming data equal undefined', () => {
     const mockData = undefined;
     const result = pipe.transform(mockData);
-    expect(result).toBe('');
+    expect(result).toBe('-');
   });
 });

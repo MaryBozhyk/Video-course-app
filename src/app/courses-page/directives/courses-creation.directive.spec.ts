@@ -39,8 +39,7 @@ class TestComponent {
       creationDate: new Date('2020, 11, 20'),
       duration: 98,
       description:
-        'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-      topRated: false
+        'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
     }
   ];
 }
@@ -65,14 +64,14 @@ describe('CoursesCreationDirective', () => {
     expect(des.length).toBe(3);
   });
 
-  it('should color 1st <div> border "green"', () => {
-    const borderColor = des[0].nativeElement.style.borderColor;
-    expect(borderColor).toBe('rgb(103, 163, 0)');
+  it('1st <div> should have class "is-fresh"', () => {
+    const el = des[0].nativeElement;
+    expect(el).toHaveClass('is-fresh');
   });
 
-  it('should color 2nd <div> border "blue"', () => {
-    const borderColor = des[1].nativeElement.style.borderColor;
-    expect(borderColor).toBe('rgb(0, 158, 204)');
+  it('2nd <div> hould have class "is-upcomming"', () => {
+    const el = des[1].nativeElement;
+    expect(el).toHaveClass('is-upcomming');
   });
 
   it('3d <div> should not have a customProperty', () => {

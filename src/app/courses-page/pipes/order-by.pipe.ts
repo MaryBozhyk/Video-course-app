@@ -6,6 +6,10 @@ import { Course } from '@app/models';
 })
 export class OrderByPipe implements PipeTransform {
   transform(arr: Course[]): Course[] {
-    return arr.sort((a, b) => b.creationDate.getTime() - a.creationDate.getTime());
+    return arr.sort((a, b) => this.newestFirst(a, b));
+  }
+
+  private newestFirst(courseA, courseB) {
+    return courseB.creationDate.getTime() - courseA.creationDate.getTime()
   }
 }

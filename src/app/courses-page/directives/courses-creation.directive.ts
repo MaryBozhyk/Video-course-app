@@ -17,13 +17,15 @@ export class CoursesCreationDirective implements OnInit {
     const creation = this.creationDate.getTime();
     const now = Date.now();
     const diff = Math.floor((now - creation)/msInDay);
+    const isFreshCourse = diff >= 0 && diff <= 14;
+    const isUpcoming = diff < 0;
 
-    if (diff >= 0 && diff <= 14) {
-      this.render.setStyle(this.el.nativeElement, 'borderColor', '#67a300');
+    if (isFreshCourse) {
+      this.render.addClass(this.el.nativeElement, 'is-fresh');
     }
 
-    if (diff < 0) {
-      this.render.setStyle(this.el.nativeElement, 'borderColor', '#009ecc');
+    if (isUpcoming) {
+      this.render.addClass(this.el.nativeElement, 'is-upcomming');
     }
   }
 }

@@ -11,6 +11,14 @@
   border: 2px solid transparent;
 }
 
+:host(.is-fresh) {
+  border-color: color(olive1);
+}
+
+:host(.is-upcomming) {
+  border-color: color(pacificBlue);
+}
+
 .header-block {
   display: flex;
   justify-content: space-between;
