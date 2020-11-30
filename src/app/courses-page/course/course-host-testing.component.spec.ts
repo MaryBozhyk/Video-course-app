@@ -5,6 +5,8 @@ import { By } from '@angular/platform-browser';
 import { Course } from '@app/models';
 import { CourseComponent } from './course.component';
 import { DurationPipe } from '../pipes/duration.pipe';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { MockBuilder } from 'ng-mocks';
 
 @Component({
   template: `
@@ -36,10 +38,8 @@ describe('CourseComponent', () => {
   let testHost: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [CourseComponent, TestHostComponent, DurationPipe]
-    });
+  beforeEach(async () => {
+    await MockBuilder(CourseComponent).keep(TestHostComponent).keep(DurationPipe).keep(OverlayModule);
     fixture = TestBed.createComponent(TestHostComponent);
     testHost = fixture.componentInstance;
     fixture.detectChanges();
@@ -82,12 +82,5 @@ describe('CourseComponent', () => {
 
     editBtn.triggerEventHandler('click', null);
     expect(testHost.editedCourse).toBe(testHost.course);
-  });
-
-  it('should raise delete item', () => {
-    const deleteBtn = fixture.debugElement.query(By.css('.delete-btn'));
-
-    deleteBtn.triggerEventHandler('click', null);
-    expect(testHost.deletedCourse).toBe(testHost.course);
   });
 });

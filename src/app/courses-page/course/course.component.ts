@@ -13,11 +13,21 @@ export class CourseComponent {
   @Output() edit = new EventEmitter<Course>();
   @Output() delete = new EventEmitter<Course>();
 
+  isOpen = false;
+
   onEdit(): void {
     this.edit.emit(this.course);
   }
 
   onDelete(): void {
     this.delete.emit(this.course);
+  }
+
+  onCancel(): void {
+    this.isOpen = false;
+  }
+
+  onDetached(): void {
+    this.isOpen = false;
   }
 }

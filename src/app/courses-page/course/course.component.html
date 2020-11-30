@@ -24,8 +24,28 @@
     <button class="edit-btn btn" (click)="onEdit()">
       <img src="assets/icons/ic_edit.svg" alt="img" class="icon" />Edit
     </button>
-    <button class="delete-btn btn" (click)="onDelete()">
+    <button class="delete-btn btn" cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="isOpen = true">
       <img src="assets/icons/ic_delete.svg" alt="img" class="icon" />Delete
     </button>
   </div>
 </section>
+
+<ng-template
+  #overlayDir="cdkConnectedOverlay"
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+  (detach)="onDetached()"
+>
+  <section class="delete-popup">
+    <header class="popup-header">
+      <p>Delete course?</p>
+      <img src="assets/icons/ic_close.svg" alt="img" class="close-icon" (click)="onCancel()"/>
+    </header>
+    <main class="popup-text">Are you sure you want to delete {{ course.title | uppercase }}?</main>
+    <footer class="popup-buttons">
+      <button class="cancel-btn popup-btn" (click)="onCancel()">Cancel</button>
+      <button class="delete-p-btn popup-btn" (click)="onDelete()">Yes, delete</button>
+    </footer>
+  </section>
+</ng-template>

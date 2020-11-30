@@ -11,6 +11,7 @@ import { HeaderModule } from '@shared/components/header';
 import { LoginButtonsModule } from '@shared/components/login-buttons';
 import { CoursesCreationDirective } from './directives';
 import { DurationPipe, OrderByPipe, FilterPipe } from './pipes';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,8 @@ import { DurationPipe, OrderByPipe, FilterPipe } from './pipes';
     OrderByPipe,
     FilterPipe
   ],
-  imports: [CommonModule, FormsModule, BreadcrumbsModule, HeaderModule, LoginButtonsModule],
+  imports: [CommonModule, FormsModule, OverlayModule, BreadcrumbsModule, HeaderModule, LoginButtonsModule],
   exports: [CoursesPageComponent],
-  providers: [FilterPipe]
+  providers: [FilterPipe],
 })
 export class CoursesPageModule {}
