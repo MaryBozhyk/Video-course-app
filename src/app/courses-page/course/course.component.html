@@ -35,17 +35,16 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayOpen]="isOpen"
-  (detach)="onDetached()"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayBackdropClass]="'dark-backdrop'"
+  [cdkConnectedOverlayPanelClass]="'preview-dialog-panel'"
+  (backdropClick)="onCancel()"
 >
   <section class="delete-popup">
-    <header class="popup-header">
-      <p>Delete course?</p>
-      <img src="assets/icons/ic_close.svg" alt="img" class="close-icon" (click)="onCancel()"/>
-    </header>
-    <main class="popup-text">Are you sure you want to delete {{ course.title | uppercase }}?</main>
-    <footer class="popup-buttons">
-      <button class="cancel-btn popup-btn" (click)="onCancel()">Cancel</button>
-      <button class="delete-p-btn popup-btn" (click)="onDelete()">Yes, delete</button>
-    </footer>
+    <app-course-dialog
+      [course]="course"
+      (cancel)="onCancel()"
+      (delete)="onDelete()">
+    </app-course-dialog>
   </section>
 </ng-template>

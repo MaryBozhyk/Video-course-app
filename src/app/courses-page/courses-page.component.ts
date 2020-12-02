@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { Course } from '@app/models';
 import { FilterPipe } from './pipes';
 import { CoursesService } from './services';
+
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.scss']
 })
-export class CoursesPageComponent {
+export class CoursesPageComponent implements OnDestroy {
   searchedCourses: Course[];
 
   get courses() {
-    return this.coursesService.getCourses();
+    let coursesList = [];
+    this.coursesSub = this.coursesService.getCourses().subscribe(courses => coursesList = courses);
+    return coursesList;
   }
 
   get filteredCourses() {
@@ -24,7 +28,13 @@ export class CoursesPageComponent {
     return !!this.filteredCourses.length;
   }
 
+  private coursesSub: Subscription;
+
   constructor(private filterPipe: FilterPipe, private coursesService: CoursesService) {}
+
+  ngOnDestroy(): void {
+    this.coursesSub.unsubscribe();
+  }
 
   onAddNewCourse(): void {
     console.log('Add new course');

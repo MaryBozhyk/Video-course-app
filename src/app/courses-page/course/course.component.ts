@@ -26,8 +26,4 @@ export class CourseComponent {
   onCancel(): void {
     this.isOpen = false;
   }
-
-  onDetached(): void {
-    this.isOpen = false;
-  }
 }
