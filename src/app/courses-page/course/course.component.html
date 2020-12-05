@@ -33,18 +33,16 @@
 <ng-template
   #overlayDir="cdkConnectedOverlay"
   cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="dark-backdrop"
+  cdkConnectedOverlayPanelClass="preview-dialog-panel"
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayOpen]="isOpen"
-  [cdkConnectedOverlayHasBackdrop]="true"
-  [cdkConnectedOverlayBackdropClass]="'dark-backdrop'"
-  [cdkConnectedOverlayPanelClass]="'preview-dialog-panel'"
   (backdropClick)="onCancel()"
 >
-  <section class="delete-popup">
-    <app-course-dialog
-      [course]="course"
-      (cancel)="onCancel()"
-      (delete)="onDelete()">
-    </app-course-dialog>
-  </section>
+  <app-course-dialog
+    [course]="course"
+    (cancel)="onCancel()"
+    (delete)="onDelete()">
+  </app-course-dialog>
 </ng-template>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { Course } from '@app/models';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,20 +37,20 @@ export class CoursesService {
 
   constructor() { }
 
-  getCourses(): Observable<Course[]> {
-    return of(this.courses);
+  getCourses(): Course[] {
+    return this.courses;
   }
 
   createCourse(course: Course): void {
     this.courses.push(course);
   }
 
-  getCourse(id: string): Observable<Course> {
-    return of(this.courses.find(course => course.id === id));
+  getCourse(id: string): Course {
+    return this.courses.find(course => course.id === id);
   }
 
-  updateCourse(course: Course): Observable<Course[]> {
-    return of([...this.courses, course]);
+  updateCourse(course: Course): Course[] {
+    return [...this.courses, course];
   }
 
   removeCourse(course: Course): void {

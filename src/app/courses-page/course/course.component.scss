@@ -115,20 +115,3 @@
   display: flex;
   align-items: center;
 }
-
-::ng-deep {
-  .dark-backdrop {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    background-color: color(blackTransparent);
-  }
-
-  .preview-dialog-panel {
-    position: absolute;
-    bottom: 50% !important;
-    right: 50% !important;
-    transform: translate(50%, 50%);
-  }
-}
