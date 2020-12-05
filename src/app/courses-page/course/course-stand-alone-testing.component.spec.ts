@@ -3,6 +3,8 @@ import { By } from '@angular/platform-browser';
 
 import { CourseComponent } from './course.component';
 import { DurationPipe } from '../pipes/duration.pipe';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { MockBuilder } from 'ng-mocks';
 
 const testCourse = {
   id: '1',
@@ -17,10 +19,8 @@ describe('CourseComponent', () => {
   let component: CourseComponent;
   let fixture: ComponentFixture<CourseComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [CourseComponent, DurationPipe]
-    });
+  beforeEach(async () => {
+    await MockBuilder(CourseComponent).keep(DurationPipe).keep(OverlayModule);
     fixture = TestBed.createComponent(CourseComponent);
     component = fixture.componentInstance;
     component.course = testCourse;
@@ -67,11 +67,10 @@ describe('CourseComponent', () => {
     expect(component.edit.emit).toHaveBeenCalledWith(testCourse);
   });
 
-  it('should raise delete item', () => {
-    spyOn(component.delete, 'emit');
+  it('should change isOpen property value', () => {
     const deleteBtn = fixture.debugElement.query(By.css('.delete-btn'));
 
     deleteBtn.triggerEventHandler('click', null);
-    expect(component.delete.emit).toHaveBeenCalledWith(testCourse);
+    expect(component.isOpen).toBe(true);
   });
 });

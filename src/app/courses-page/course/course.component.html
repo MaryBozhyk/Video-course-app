@@ -24,8 +24,25 @@
     <button class="edit-btn btn" (click)="onEdit()">
       <img src="assets/icons/ic_edit.svg" alt="img" class="icon" />Edit
     </button>
-    <button class="delete-btn btn" (click)="onDelete()">
+    <button class="delete-btn btn" cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="isOpen = true">
       <img src="assets/icons/ic_delete.svg" alt="img" class="icon" />Delete
     </button>
   </div>
 </section>
+
+<ng-template
+  #overlayDir="cdkConnectedOverlay"
+  cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="dark-backdrop"
+  cdkConnectedOverlayPanelClass="preview-dialog-panel"
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+  (backdropClick)="onCancel()"
+>
+  <app-course-dialog
+    [course]="course"
+    (cancel)="onCancel()"
+    (delete)="onDelete()">
+  </app-course-dialog>
+</ng-template>
