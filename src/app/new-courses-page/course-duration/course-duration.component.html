@@ -1,0 +1,7 @@
+<div class="form-field">
+    <div class="input-wrapper">
+        <label for="duration" class="form-field-lable">Duration: <span class="required-msg">* required</span></label>
+        <input type="number" id="duration" class="form-field-input" placeholder="minutes" [ngModel]="courseDuration" (ngModelChange)="onDurationChange($event)" required/>
+    </div>
+    <p class="duration-calcelation">{{courseDuration | duration}}</p>    
+</div>

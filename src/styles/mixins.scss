@@ -1,3 +1,12 @@
+@import 'styles/variables';
+
+@mixin page-style {
+  background-color: color(whiteSmoke);
+  display: block;
+  min-height: calc(100vh - 60px);
+  padding-bottom: 30px;
+}
+
 @mixin change-focus-view($color) {
   &:focus {
     outline: none;
@@ -6,5 +15,55 @@
 
   ::-moz-focus-inner {
     border: 0;
+  }
+}
+
+@mixin form-field($color, $font) {
+  .form-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-field-lable {
+    line-height: 24px;
+    letter-spacing: 0;
+    color: $color;
+    font-size: 14px;
+    font-family: $font;
+    text-transform: none;
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .required-msg {
+    line-height: 24px;
+    letter-spacing: 0;
+    color: color(gunPowder);
+    font-size: 12px;
+    font-family: font(regular);
+    text-transform: none;
+    text-align: left;
+    font-weight: normal;
+  }
+}
+
+@mixin new-course-input {
+  .form-field-input {
+    padding: 9px 12px;
+    border-radius: 3px;
+    border: 1px solid color(linkWater);
+    resize: none;
+    
+    &[placeholder] {
+      line-height: 18px;
+      letter-spacing: 0;
+      font-size: 14px;
+      font-family: font(regular);
+      text-transform: none;
+      text-align: left;
+    }
   }
 }

@@ -2,10 +2,7 @@
 @import 'styles/mixins';
 
 :host {
-  background-color: color(whiteSmoke);
-  display: block;
-  min-height: calc(100vh - 60px);
-  padding-bottom: 30px;
+  @include page-style;
 }
 
 .breadcrumbs-txt {

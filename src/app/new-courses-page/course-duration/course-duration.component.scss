@@ -1,0 +1,22 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+@include form-field(color(gunPowder), font(semiBold));
+@include new-course-input;
+
+.form-field {
+  margin-bottom: 12px;
+  width: 230px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.form-field-input {
+  width: 155px;
+}
+
+.duration-calcelation {
+  padding-bottom: 10px;
+}
