@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { Course } from '@app/models';
 
 @Component({
   selector: 'app-new-course-form',
   templateUrl: './new-course-form.component.html',
-  styleUrls: ['./new-course-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./new-course-form.component.scss']
 })
 export class NewCourseFormComponent {
   value: Partial<Course> = {};

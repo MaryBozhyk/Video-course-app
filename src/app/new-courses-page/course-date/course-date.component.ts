@@ -11,7 +11,6 @@ export class CourseDateComponent {
   @Output() courseDateChange = new EventEmitter<Date>();
 
   onDateChange(model: Date): void {
-    this.courseDate = model;
     this.courseDateChange.emit(model);
   }
 }

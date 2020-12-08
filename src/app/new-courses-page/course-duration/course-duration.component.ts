@@ -11,7 +11,6 @@ export class CourseDurationComponent {
   @Output() courseDurationChange = new EventEmitter<number>();
 
   onDurationChange(model: number): void {
-    this.courseDuration = model;
     this.courseDurationChange.emit(model);
   }
 }
