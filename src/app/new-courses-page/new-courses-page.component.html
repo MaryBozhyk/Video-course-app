@@ -1,0 +1,9 @@
+<app-header>
+    <app-login-buttons></app-login-buttons>
+</app-header>
+<app-breadcrumbs>
+    <a class="breadcrumbs-txt">Courses / <b class="breadcrumbs-bold">New Course</b></a>
+</app-breadcrumbs>
+<main class="form-section">
+    <app-new-course-form (newCourse)="onCreateNewCourse($event)" (cancel)="onCancel()"></app-new-course-form>
+</main>

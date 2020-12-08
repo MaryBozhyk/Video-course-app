@@ -1,0 +1,28 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+:host {
+  @include page-style;
+}
+
+.breadcrumbs-txt {
+  line-height: 24px;
+  height: 24px;
+  letter-spacing: 0;
+  color: color(rhino);
+  font-size: 14px;
+  font-family: font(bold);
+  text-transform: none;
+  text-align: left;
+  text-decoration: none;
+}
+
+.breadcrumbs-bold {
+  font-weight: 700;
+}
+
+.form-section {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
