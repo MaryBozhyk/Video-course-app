@@ -1,0 +1,6 @@
+@import 'styles/mixins';
+
+:host {
+  @include page-style;
+  background: no-repeat center/80% url('assets/images/404-error-not-found-page-lost.png');
+}

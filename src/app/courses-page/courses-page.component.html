@@ -2,13 +2,13 @@
     <app-login-buttons></app-login-buttons>
 </app-header>
 <app-breadcrumbs>
-    <a href="#" class="breadcrumbs-txt">Courses</a>
+    <a class="breadcrumbs-txt">Courses</a>
 </app-breadcrumbs>
 <app-course-search (searchTerm)="onSearchCourse($event)"></app-course-search>
-<button class="add-btn" (click)="onAddNewCourse()">
+<button class="add-btn" routerLink="./new">
     <div class="add-ic">+</div> Add course
 </button>
-<app-courses-list [courses]="filteredCourses" (delete)="onDeleteCourse($event)" (edit)="onEditCourse($event)"
+<app-courses-list [courses]="filteredCourses" (delete)="onDeleteCourse($event)"
     (loadmore)="onLoadMoreCourses()" *ngIf="hasCourses; else noDataBlock">
 </app-courses-list>
 <ng-template #noDataBlock>

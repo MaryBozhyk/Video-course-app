@@ -7,7 +7,11 @@ import { HeaderModule } from '@shared/components/header';
 
 @NgModule({
   declarations: [LoginPageComponent],
-  imports: [CommonModule, HeaderModule, ReactiveFormsModule],  
+  imports: [
+    CommonModule,
+    HeaderModule,
+    ReactiveFormsModule
+  ],  
   exports: [LoginPageComponent]
 })
 export class LoginPageModule { }

@@ -21,8 +21,8 @@
 <section class="info-block">
   <p class="information">{{ course.description }}</p>
   <div class="buttons-block">
-    <button class="edit-btn btn" (click)="onEdit()">
-      <img src="assets/icons/ic_edit.svg" alt="img" class="icon" />Edit
+    <button class="edit-btn btn" [routerLink]="['/courses', course.id]">
+      <img src="assets/icons/ic_edit.svg" alt="img" class="icon"/>Edit
     </button>
     <button class="delete-btn btn" cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="isOpen = true">
       <img src="assets/icons/ic_delete.svg" alt="img" class="icon" />Delete

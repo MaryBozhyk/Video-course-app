@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { RouterModule } from '@angular/router';
 
 import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
 import { HeaderModule } from '@shared/components/header';
@@ -26,7 +27,15 @@ import { DurationPipe, OrderByPipe, FilterPipe } from './pipes';
     OrderByPipe,
     FilterPipe
   ],
-  imports: [CommonModule, FormsModule, OverlayModule, BreadcrumbsModule, HeaderModule, LoginButtonsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    OverlayModule,
+    BreadcrumbsModule,
+    HeaderModule,
+    LoginButtonsModule,
+    RouterModule,
+  ],
   exports: [CoursesPageComponent, DurationPipe],
   providers: [FilterPipe],
 })

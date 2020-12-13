@@ -23,14 +23,6 @@ describe('CoursesPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should raise add-new-course', () => {
-    spyOn(component, 'onAddNewCourse');
-    const loadMoreBtn = fixture.debugElement.query(By.css('.add-btn'));
-
-    loadMoreBtn.triggerEventHandler('click', null);
-    expect(component.onAddNewCourse).toHaveBeenCalled();
-  });
-
   it('search method should show correct result', () => {
     const searchTerm = '1';
     const filteredAfterSearch = component.courses.filter((course) => {
@@ -44,24 +36,10 @@ describe('CoursesPageComponent', () => {
   });
 
   // TODO: Should be replaced when logic to the method will be added
-  xit('add method should show correct result', () => {
-    component.onAddNewCourse();
-    expect(console.log).toHaveBeenCalledWith('Add new course');
-  });
-
-  // TODO: Should be replaced when logic to the method will be added
   xit('delete method should show correct result', () => {
     component.onDeleteCourse(component.courses[0]);
     expect(console.log).toHaveBeenCalledWith(
       `Delete from parent ${component.courses[0].title} with id ${component.courses[0].id}`
-    );
-  });
-
-  // TODO: Should be replaced when logic to the method will be added
-  xit('edit method should show correct result', () => {
-    component.onEditCourse(component.courses[0]);
-    expect(console.log).toHaveBeenCalledWith(
-      `Edit from parent ${component.courses[0].title} with id ${component.courses[0].id}`
     );
   });
 

@@ -1,6 +1,4 @@
-<header class="new-course-header">
-    New course
-</header>
+<header class="new-course-header">{{courseTitle}}</header>
 <form class="new-course-form">
     <div class="form-field">
         <label for="title" class="form-field-lable">Title: <span class="required-msg">* required</span></label>
@@ -15,6 +13,6 @@
     <app-course-authors></app-course-authors>
     <div class="buttons-block">
         <button type="button" class="cancel-button add-course-btn" (click)="onCancel()">Cancel</button>
-        <button type="submit" class="submit-button add-course-btn" (click)="onSave()">Save</button>
+        <button type="button" class="submit-button add-course-btn" (click)="onSave()">Save</button>
     </div>        
 </form>
