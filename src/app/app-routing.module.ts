@@ -5,7 +5,7 @@ import { CoursesPageComponent } from '@app/courses-page';
 import { LoginPageComponent } from '@app/login-page';
 import { NewCoursesPageComponent } from '@app/new-courses-page';
 import { ErrorPageComponent } from '@app/error-page';
-import { AuthGuard } from './core/guards/auth.guard';
+import { AuthGuard } from '@app/core';
 
 const routes: Routes = [
   { 
