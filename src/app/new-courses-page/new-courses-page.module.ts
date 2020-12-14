@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
 import { HeaderModule } from '@shared/components/header';
 import { LoginButtonsModule } from '@shared/components/login-buttons';
-import { CoursesPageModule } from '@app/courses-page';
+import { SharedModule } from '@shared/shared.module';
 import { NewCourseFormComponent } from './new-course-form';
 import { NewCoursesPageComponent } from './new-courses-page.component';
 import { CourseDateComponent } from './course-date';
 import { CourseDurationComponent } from './course-duration';
 import { CourseAuthorsComponent } from './course-authors';
+import { NewCoursesPageRoutingModule } from './new-courses-page-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,13 +21,12 @@ import { CourseAuthorsComponent } from './course-authors';
     CourseAuthorsComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     FormsModule,
     BreadcrumbsModule,
     HeaderModule,
     LoginButtonsModule,
-    CoursesPageModule,
-    RouterModule,
+    NewCoursesPageRoutingModule
   ],
   exports: [NewCoursesPageComponent]
 })

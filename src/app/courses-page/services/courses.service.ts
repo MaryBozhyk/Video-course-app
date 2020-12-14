@@ -61,7 +61,7 @@ export class CoursesService {
 
   private formatCourse(course : Partial<Course>): Course {
     return {
-      id: course.id,
+      id: course.id || uuidv4(),
       title: course.title || null,
       creationDate: new Date(course.creationDate) || null,
       duration: course.duration || null,

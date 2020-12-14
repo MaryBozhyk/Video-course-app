@@ -11,12 +11,13 @@ import { CoursesService } from './services';
 })
 export class CoursesPageComponent {
   searchedCourses: Course[];
+  searchTerm: string;
 
   get courses() {
     return this.coursesService.getCourses();
   }
 
-  get filteredCourses() {
+  get filteredCourses() {    
     return this.searchedCourses ? this.searchedCourses : this.courses;
   }
 
@@ -28,6 +29,10 @@ export class CoursesPageComponent {
 
   onDeleteCourse(course: Course): void {
     this.coursesService.removeCourse(course);
+
+    if (this.searchTerm) {
+      this.onSearchCourse(this.searchTerm);
+    }
   }
 
   onLoadMoreCourses(): void {
@@ -35,6 +40,7 @@ export class CoursesPageComponent {
   }
 
   onSearchCourse(searchTerm: string): void {
+    this.searchTerm = searchTerm;
     this.searchedCourses = this.filterPipe.transform(this.courses, searchTerm);
   }
 }

@@ -22,7 +22,7 @@ export class NewCoursesPageComponent implements OnInit {
   ngOnInit(): void {
     this.courseId = this.route.snapshot.paramMap.get('id');
 
-    if (this.courseId !== 'new') {
+    if (this.courseId != null) {
       this.course = {...this.coursesService.getCourse(this.courseId)};
     }
   }

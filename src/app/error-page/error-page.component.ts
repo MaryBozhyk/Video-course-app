@@ -1,18 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-error-page',
   templateUrl: './error-page.component.html',
   styleUrls: ['./error-page.component.scss']
 })
-export class ErrorPageComponent implements OnInit {
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
-    setTimeout(()=>{
-      this.router.navigate(['courses']);
-    }, 5000);
-  }
-}
+export class ErrorPageComponent{}

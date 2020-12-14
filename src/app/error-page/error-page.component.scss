@@ -1,6 +1,19 @@
+@import 'styles/variables';
 @import 'styles/mixins';
 
 :host {
   @include page-style;
   background: no-repeat center/80% url('assets/images/404-error-not-found-page-lost.png');
+}
+
+.courses-link {
+  color: color(white);
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+}
+
+.icon {
+  margin-left: 5px;
 }
