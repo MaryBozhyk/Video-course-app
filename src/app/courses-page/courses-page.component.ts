@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Course } from '@app/models';
 import { FilterPipe } from './pipes';
-import { CoursesService } from './services';
+import { CoursesService } from '@shared/services';
 
 @Component({
   selector: 'app-courses-page',

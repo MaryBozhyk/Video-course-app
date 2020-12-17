@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
 import { HeaderModule } from '@shared/components/header';
@@ -10,7 +11,6 @@ import { NewCoursesPageComponent } from './new-courses-page.component';
 import { CourseDateComponent } from './course-date';
 import { CourseDurationComponent } from './course-duration';
 import { CourseAuthorsComponent } from './course-authors';
-import { NewCoursesPageRoutingModule } from './new-courses-page-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { NewCoursesPageRoutingModule } from './new-courses-page-routing.module';
     BreadcrumbsModule,
     HeaderModule,
     LoginButtonsModule,
-    NewCoursesPageRoutingModule
+    RouterModule
   ],
   exports: [NewCoursesPageComponent]
 })

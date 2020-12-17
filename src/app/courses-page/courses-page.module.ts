@@ -14,8 +14,7 @@ import { CourseDialogComponent } from './course-dialog';
 import { CoursesCreationDirective } from './directives';
 import { OrderByPipe, FilterPipe } from './pipes';
 import { CoursesPageRoutingModule } from './courses-page-routing.module';
-
-import { NgBodyScrollLockService } from 'ng-body-scroll-lock';
+import { NewCoursesPageModule } from '@app/new-courses-page';
 
 @NgModule({
   declarations: [
@@ -35,9 +34,10 @@ import { NgBodyScrollLockService } from 'ng-body-scroll-lock';
     BreadcrumbsModule,
     HeaderModule,
     LoginButtonsModule,
+    NewCoursesPageModule,
     CoursesPageRoutingModule    
   ],
   exports: [CoursesPageComponent],
-  providers: [FilterPipe, NgBodyScrollLockService],
+  providers: [FilterPipe],
 })
 export class CoursesPageModule {}
