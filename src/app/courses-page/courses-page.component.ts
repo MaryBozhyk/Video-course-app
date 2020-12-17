@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Course } from '@app/models';
 import { FilterPipe } from './pipes';
-import { CoursesService } from './services';
+import { CoursesService } from '@shared/services';
 
 @Component({
   selector: 'app-courses-page',
@@ -11,12 +11,13 @@ import { CoursesService } from './services';
 })
 export class CoursesPageComponent {
   searchedCourses: Course[];
+  searchTerm: string;
 
   get courses() {
     return this.coursesService.getCourses();
   }
 
-  get filteredCourses() {
+  get filteredCourses() {    
     return this.searchedCourses ? this.searchedCourses : this.courses;
   }
 
@@ -26,16 +27,12 @@ export class CoursesPageComponent {
 
   constructor(private filterPipe: FilterPipe, private coursesService: CoursesService) {}
 
-  onAddNewCourse(): void {
-    console.log('Add new course');
-  }
-
   onDeleteCourse(course: Course): void {
     this.coursesService.removeCourse(course);
-  }
 
-  onEditCourse(course: Course): void {
-    console.log(`Edit from parent ${course.title} with id ${course.id}`);
+    if (this.searchTerm) {
+      this.onSearchCourse(this.searchTerm);
+    }
   }
 
   onLoadMoreCourses(): void {
@@ -43,6 +40,7 @@ export class CoursesPageComponent {
   }
 
   onSearchCourse(searchTerm: string): void {
+    this.searchTerm = searchTerm;
     this.searchedCourses = this.filterPipe.transform(this.courses, searchTerm);
   }
 }

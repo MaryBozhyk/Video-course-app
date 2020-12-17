@@ -11,16 +11,11 @@ import { Course } from '@app/models';
 export class CourseComponent {
   @Input() course: Course;
 
-  @Output() edit = new EventEmitter<Course>();
   @Output() delete = new EventEmitter<Course>();
-
+  
   isOpen = false;
 
-  onEdit(): void {
-    this.edit.emit(this.course);
-  }
-
-  onDelete(): void {
+  onDelete(): void {    
     this.delete.emit(this.course);
   }
 

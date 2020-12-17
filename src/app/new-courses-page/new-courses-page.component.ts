@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { CoursesService } from '@app/courses-page';
+import { CoursesService } from '@shared/services';
 import { Course } from '@app/models';
 
 @Component({
@@ -8,15 +9,30 @@ import { Course } from '@app/models';
   templateUrl: './new-courses-page.component.html',
   styleUrls: ['./new-courses-page.component.scss']
 })
-export class NewCoursesPageComponent {
+export class NewCoursesPageComponent implements OnInit {
+  courseId: string;
+  course: Course;
 
-  constructor(private coursesService: CoursesService) {}
+  constructor(
+    private coursesService: CoursesService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
+
+  ngOnInit(): void {
+    this.courseId = this.route.snapshot.paramMap.get('id');
+
+    if (this.courseId != null) {
+      this.course = {...this.coursesService.getCourse(this.courseId)};
+    }
+  }
 
   onCreateNewCourse(course: Partial<Course>): void {
-    this.coursesService.createCourse(course);
+    this.course ? this.coursesService.updateCourse(course) : this.coursesService.createCourse(course);
+    this.router.navigate(['courses']);
   }
 
   onCancel(): void {
-    console.log("Adding is cancelled")
+    this.router.navigate(['courses']);
   }
 }

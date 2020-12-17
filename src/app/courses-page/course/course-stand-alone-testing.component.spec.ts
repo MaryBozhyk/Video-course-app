@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { CourseComponent } from './course.component';
-import { DurationPipe } from '../pipes/duration.pipe';
+import { DurationPipe } from '@shared/pipes';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MockBuilder } from 'ng-mocks';
 
@@ -57,14 +57,6 @@ describe('CourseComponent', () => {
     const courseDescription = fixture.debugElement.query(By.css('.information'));
     const courseDescriptionEl = courseDescription.nativeElement;
     expect(courseDescriptionEl.textContent).toContain(testCourse.description);
-  });
-
-  it('should raise edit item', () => {
-    spyOn(component.edit, 'emit');
-    const editBtn = fixture.debugElement.query(By.css('.edit-btn'));
-
-    editBtn.triggerEventHandler('click', null);
-    expect(component.edit.emit).toHaveBeenCalledWith(testCourse);
   });
 
   it('should change isOpen property value', () => {

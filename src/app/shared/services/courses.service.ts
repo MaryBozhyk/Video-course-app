@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
   providedIn: 'root'
 })
 export class CoursesService {
-  courses: Course[] = [
+  private courses: Course[] = [
     {
       id: '1',
       title: 'Video Course 1. Name tag',
@@ -37,32 +37,35 @@ export class CoursesService {
     }
   ];
 
-  constructor() { }
-
   getCourses(): Course[] {
     return this.courses;
   }
 
   createCourse(course: Partial<Course>): void {
-    const updatedCourse = {
-      id: uuidv4(),
-      title: course.title || null,
-      creationDate: course.creationDate || null,
-      duration: course.duration || null,
-      description: course.description || null
-    }
-    this.courses.push(updatedCourse);
+    this.courses.push(this.formatCourse(course));
   }
 
   getCourse(id: string): Course {
     return this.courses.find(course => course.id === id);
   }
 
-  updateCourse(course: Course): Course[] {
-    return [...this.courses, course];
+  updateCourse(course: Partial<Course>): void {
+    const updatedCourse = this.formatCourse(course);
+
+    this.courses = this.courses.map(course => course.id === updatedCourse.id ? updatedCourse : course);
   }
 
   removeCourse(course: Course): void {
     this.courses = this.courses.filter(item => item !== course);
+  }
+
+  private formatCourse(course : Partial<Course>): Course {
+    return {
+      id: course.id || uuidv4(),
+      title: course.title || null,
+      creationDate: new Date(course.creationDate) || null,
+      duration: course.duration || null,
+      description: course.description || null
+    }
   }
 }

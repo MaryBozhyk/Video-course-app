@@ -1,7 +1,7 @@
 @import 'styles/variables';
 
 .dark-backdrop {
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
   top: 0;
@@ -9,7 +9,8 @@
 }
 
 .preview-dialog-panel {
-  position: absolute;
+  position: fixed;
+  top: unset !important;
   bottom: 50% !important;
   right: 50% !important;
   transform: translate(50%, 50%);

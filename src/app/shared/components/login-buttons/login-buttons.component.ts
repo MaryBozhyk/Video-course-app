@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/core';
 
 @Component({
@@ -8,11 +9,13 @@ import { AuthenticationService } from '@app/core';
 })
 export class LoginButtonsComponent {
 
-  constructor(private auth: AuthenticationService) {}
+  constructor(
+    public auth: AuthenticationService,
+    private router: Router
+  ) {}
 
   onLogout(): void {
-    const userName = this.auth.getUserInfo()?.email;
     this.auth.logout();
-    userName ? console.log(`Logout ${userName}`) : console.error('User wasn\'n Logged In');
+    this.router.navigate(['login']);
   }
 }

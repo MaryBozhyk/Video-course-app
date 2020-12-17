@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { Course } from '@app/models';
 import { CourseComponent } from './course.component';
-import { DurationPipe } from '../pipes/duration.pipe';
+import { DurationPipe } from '@shared/pipes';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MockBuilder } from 'ng-mocks';
 

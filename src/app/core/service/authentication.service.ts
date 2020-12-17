@@ -6,26 +6,21 @@ import { LoginUser } from '@app/models';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private isLoggedIn: boolean = false; 
-  private authKey: string = 'Video_course_user';
+  private readonly authKey: string = 'Video_course_user';
 
-  constructor() {}
-
-  login(key: string, value: LoginUser): void {
-    window.localStorage.setItem(key, JSON.stringify(value));
-    this.isLoggedIn = true;
+  login(value: LoginUser): void {
+    window.localStorage.setItem(this.authKey, JSON.stringify(value));
   }
 
-  logout(key: string = this.authKey): void {
-    window.localStorage.removeItem(key);
-    this.isLoggedIn = false;
+  logout(): void {
+    window.localStorage.removeItem(this.authKey);
   }
 
   isAuthenticated(): boolean {
-    return this.isLoggedIn;
+    return this.getUserInfo() !== null;
   }
 
-  getUserInfo(key: string = this.authKey): LoginUser {
-    return JSON.parse(window.localStorage.getItem(key));
+  getUserInfo(): LoginUser {
+    return JSON.parse(window.localStorage.getItem(this.authKey));
   }
 }

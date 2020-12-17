@@ -5,7 +5,8 @@
 
 :host {
   @include page-style;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .login-block {
@@ -15,11 +16,8 @@
   height: 311px;
   width: 368px;
   padding: 24px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+  display: block;
+  margin: auto;
 }
 
 .login-header {

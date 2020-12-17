@@ -1,18 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CoursesPageComponent } from '@app/courses-page';
-import { LoginPageComponent } from '@app/login-page';
-import { NewCoursesPageComponent } from '@app/new-courses-page';
+import { AuthGuard } from '@app/core';
 
 const routes: Routes = [
-  { path: 'courses', component: CoursesPageComponent },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'new-course', component: NewCoursesPageComponent },
   {
     path: '',
     redirectTo: '/courses',
     pathMatch: 'full'
+  },
+  { 
+    path: 'courses',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('@app/courses-page').then(m => m.CoursesPageModule),
+  },
+  { 
+    path: 'login',
+    loadChildren: () => import('@app/login-page').then(m => m.LoginPageModule),
+  },
+  { 
+    path: '**',
+    loadChildren: () => import('@app/error-page').then(m => m.ErrorPageModule),
   }
 ];
 
