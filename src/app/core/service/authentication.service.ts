@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { LoginUser } from '@app/models';
+import { HttpAuthService } from '@app/api';
+import { LoginUser, UserInfo } from '@app/models';
+
+import { Observable } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +12,13 @@ import { LoginUser } from '@app/models';
 export class AuthenticationService {
   private readonly authKey: string = 'Video_course_user';
 
-  login(value: LoginUser): void {
-    window.localStorage.setItem(this.authKey, JSON.stringify(value));
+  constructor(private httpAuth: HttpAuthService) {}
+
+  login(value: LoginUser): Observable<UserInfo> {
+    return this.httpAuth.getAuthToken(value).pipe(
+      switchMap(token => this.httpAuth.getUserInfo(token)),
+      tap(value => console.log(window.localStorage.setItem(this.authKey, JSON.stringify(value))))
+    );
   }
 
   logout(): void {
@@ -20,7 +29,7 @@ export class AuthenticationService {
     return this.getUserInfo() !== null;
   }
 
-  getUserInfo(): LoginUser {
+  getUserInfo(): UserInfo {
     return JSON.parse(window.localStorage.getItem(this.authKey));
   }
 }

@@ -2,7 +2,7 @@
     <p>Delete course?</p>
     <img src="assets/icons/ic_close.svg" alt="img" class="close-icon" (click)="cancel.emit()"/>
 </header>
-<main class="popup-text">Are you sure you want to delete {{ course.title | uppercase }}?</main>
+<main class="popup-text">Are you sure you want to delete {{ course.name | uppercase }}?</main>
 <footer class="popup-buttons">
     <button class="cancel-btn popup-btn" (click)="cancel.emit()">Cancel</button>
     <button class="delete-p-btn popup-btn" (click)="delete.emit()">Yes, delete</button>

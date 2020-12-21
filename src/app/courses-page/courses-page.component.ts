@@ -1,46 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Course } from '@app/models';
-import { FilterPipe } from './pipes';
 import { CoursesService } from '@shared/services';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.scss']
 })
-export class CoursesPageComponent {
+export class CoursesPageComponent implements OnInit, OnDestroy {
   searchedCourses: Course[];
   searchTerm: string;
 
-  get courses() {
-    return this.coursesService.getCourses();
+  courses$: Observable<Course[]>;
+
+  private unsubscribe: Subject<void> = new Subject();
+
+  constructor(private coursesService: CoursesService) {}
+
+  ngOnInit(): void {
+    this.courses$ = this.coursesService.getCourses();
   }
 
-  get filteredCourses() {    
-    return this.searchedCourses ? this.searchedCourses : this.courses;
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
-
-  get hasCourses() {
-    return !!this.filteredCourses.length;
-  }
-
-  constructor(private filterPipe: FilterPipe, private coursesService: CoursesService) {}
 
   onDeleteCourse(course: Course): void {
-    this.coursesService.removeCourse(course);
-
-    if (this.searchTerm) {
-      this.onSearchCourse(this.searchTerm);
-    }
+    this.coursesService.removeCourse(course).pipe(
+      takeUntil(this.unsubscribe)
+    ).subscribe(
+      () => {
+        this.courses$ = this.searchTerm 
+          ? this.coursesService.getSearchedCourses(this.searchTerm) 
+          : this.coursesService.getCourses();
+      },
+      (err) => console.error(err),
+    )
   }
 
   onLoadMoreCourses(): void {
-    console.log('Load more courses');
+    this.courses$ = this.coursesService.loadMoreCourses();
   }
 
   onSearchCourse(searchTerm: string): void {
     this.searchTerm = searchTerm;
-    this.searchedCourses = this.filterPipe.transform(this.courses, searchTerm);
+    this.courses$ = this.coursesService.getSearchedCourses(searchTerm);
   }
 }

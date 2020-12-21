@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/core';
 
@@ -7,12 +7,17 @@ import { AuthenticationService } from '@app/core';
   templateUrl: './login-buttons.component.html',
   styleUrls: ['./login-buttons.component.scss']
 })
-export class LoginButtonsComponent {
+export class LoginButtonsComponent implements OnInit {
+  userName: string;
 
   constructor(
-    public auth: AuthenticationService,
+    private auth: AuthenticationService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    this.userName = this.auth.getUserInfo()?.name?.first + " " + this.auth.getUserInfo()?.name?.last;
+  }
 
   onLogout(): void {
     this.auth.logout();

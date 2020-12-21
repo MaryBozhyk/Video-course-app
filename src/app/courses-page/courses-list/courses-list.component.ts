@@ -21,4 +21,8 @@ export class CoursesListComponent {
   onLoadMoreCourses(): void {
     this.loadmore.emit();
   }
+
+  trackByFn(index, item) {
+    return item.id;
+  }
 }
