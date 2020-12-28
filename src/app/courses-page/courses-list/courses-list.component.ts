@@ -28,7 +28,7 @@ export class CoursesListComponent {
     this.loadmore.emit();
   }
 
-  trackByFn(index: string, course: Course) {
+  trackByFn(index: number, course: Course): number {
     return course.id;
   }
 }
