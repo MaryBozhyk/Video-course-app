@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpCoursesService } from '@app/api';
 import { Course } from '@app/models';
 
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,8 +12,8 @@ import { v4 as uuidv4 } from 'uuid';
   providedIn: 'root'
 })
 export class CoursesService {
-
   private paginationSize: number = 5;
+  private searchSubject$ = new BehaviorSubject<string>(null);
 
   constructor(private httpCourses: HttpCoursesService) {}
 
@@ -34,12 +35,20 @@ export class CoursesService {
     return this.httpCourses.getCourse(id);
   }
 
-  getSearchedCourses(searchTerm: string) {
-    const requestBody = {
-      textFragment: searchTerm,
-      sort: 'date'
-    }
-    return this.httpCourses.getCourses(requestBody);
+  getSearchedCourses(searchTerm: string): Observable<Course[]> {
+    this.searchSubject$.next(searchTerm);
+
+    return this.searchSubject$.pipe(
+      distinctUntilChanged(),
+      debounceTime(500),
+      switchMap(searchedText => {
+        const requestBody = {
+          textFragment: searchedText,
+          sort: 'date'
+        }
+        return this.httpCourses.getCourses(requestBody);
+      })
+    );
   }
 
   updateCourse(course: Partial<Course>): Observable<Course> {

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpAuthService } from '@app/api';
 import { LoginUser, UserInfo } from '@app/models';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class AuthenticationService {
 
   login(value: LoginUser): Observable<UserInfo> {
     return this.httpAuth.getAuthToken(value).pipe(
-      switchMap(token => this.httpAuth.getUserInfo(token)),
-      tap(value => console.log(window.localStorage.setItem(this.authKey, JSON.stringify(value))))
+      tap(token => window.localStorage.setItem(this.authKey, JSON.stringify({...token, ...value}))),
+      switchMap(token => this.getUserInfo(token)),
     );
   }
 
@@ -25,11 +25,16 @@ export class AuthenticationService {
     window.localStorage.removeItem(this.authKey);
   }
 
-  isAuthenticated(): boolean {
-    return this.getUserInfo() !== null;
+  isAuthenticated(): Observable<boolean> {
+    const isAuthDone = this.getLocalStorageData() !== null;
+    return of(isAuthDone);
   }
 
-  getUserInfo(): UserInfo {
+  getLocalStorageData(): LoginUser {
     return JSON.parse(window.localStorage.getItem(this.authKey));
+  }
+
+  getUserInfo(token): Observable<UserInfo> {
+    return this.httpAuth.getUserInfo(token);
   }
 }

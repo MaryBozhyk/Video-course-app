@@ -49,6 +49,10 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
   onSearchCourse(searchTerm: string): void {
     this.searchTerm = searchTerm;
-    this.courses$ = this.coursesService.getSearchedCourses(searchTerm);
+    if (!searchTerm) {
+      this.courses$ = this.coursesService.getCourses();
+    } else if (searchTerm.length >= 3) {
+      this.courses$ = this.coursesService.getSearchedCourses(searchTerm);
+    } 
   }
 }

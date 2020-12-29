@@ -9,6 +9,7 @@ import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
 import { FooterModule } from '@shared/components/footer';
 import { HeaderModule } from '@shared/components/header';
 import { LoginButtonsModule } from '@shared/components/login-buttons';
+import { SpinnerModule } from '@shared/components/spinner';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { LoginButtonsModule } from '@shared/components/login-buttons';
     FooterModule,
     HeaderModule,
     LoginButtonsModule,
+    SpinnerModule.forRoot(),
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders],
