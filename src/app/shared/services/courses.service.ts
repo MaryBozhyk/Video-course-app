@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { HttpCoursesService } from '@app/api';
+import { CONSTANTS } from '@app/constants/constants';
 import { Course } from '@app/models';
 
-import { Observable, BehaviorSubject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,18 +12,17 @@ import { v4 as uuidv4 } from 'uuid';
   providedIn: 'root'
 })
 export class CoursesService {
-  private paginationSize: number = 5;
-  private searchSubject$ = new BehaviorSubject<string>(null);
+  private paginationSize: number = CONSTANTS.paginationSize;  
 
   constructor(private httpCourses: HttpCoursesService) {}
 
   getCourses(): Observable<Course[]> {
-    const requestBody = {
-      count: this.paginationSize,
-      sort: 'date'
-    }
+      const requestBody = {
+        count: this.paginationSize.toString(),
+        sort: 'date'
+      };
 
-    return this.httpCourses.getCourses(requestBody);
+      return this.httpCourses.getCourses(requestBody);    
   }
 
   createCourse(course: Partial<Course>): Observable<Course> {
@@ -36,19 +35,12 @@ export class CoursesService {
   }
 
   getSearchedCourses(searchTerm: string): Observable<Course[]> {
-    this.searchSubject$.next(searchTerm);
+    const requestBody = {
+      textFragment: searchTerm,
+      sort: 'date'
+    };
 
-    return this.searchSubject$.pipe(
-      distinctUntilChanged(),
-      debounceTime(500),
-      switchMap(searchedText => {
-        const requestBody = {
-          textFragment: searchedText,
-          sort: 'date'
-        }
-        return this.httpCourses.getCourses(requestBody);
-      })
-    );
+    return this.httpCourses.getCourses(requestBody);
   }
 
   updateCourse(course: Partial<Course>): Observable<Course> {
@@ -61,10 +53,10 @@ export class CoursesService {
   }
 
   loadMoreCourses(): Observable<Course[]> {
-    this.paginationSize += 5;
+    this.paginationSize += CONSTANTS.paginationSize;
 
     const requestBody = {
-      count: this.paginationSize,
+      count: this.paginationSize.toString(),
       sort: 'date'
     }
 
