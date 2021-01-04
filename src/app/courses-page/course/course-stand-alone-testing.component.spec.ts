@@ -7,10 +7,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { MockBuilder } from 'ng-mocks';
 
 const testCourse = {
-  id: '1',
-  title: 'Video Course 1. Name tag',
-  creationDate: new Date('2020, 08, 28'),
-  duration: 40,
+  id: 1,
+  name: 'Video Course 1. Name tag',
+  date: "2017-06-06T00:07:32+00:00",
+  length: 40,
   description:
     'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
 };
@@ -30,14 +30,14 @@ describe('CourseComponent', () => {
   it('should show correct title', () => {
     const courseTitle = fixture.debugElement.query(By.css('.title'));
     const courseTitleEl = courseTitle.nativeElement;
-    expect(courseTitleEl.textContent).toContain(testCourse.title.toUpperCase());
+    expect(courseTitleEl.textContent).toContain(testCourse.name.toUpperCase());
   });
 
   it('should show correct time', () => {
     const courseTime = fixture.debugElement.query(By.css('.time'));
     const courseTimeEl = courseTime.nativeElement;
-    const hours = Math.floor(testCourse.duration / 60);
-    const minutes = Math.floor(testCourse.duration % 60);
+    const hours = Math.floor(testCourse.length / 60);
+    const minutes = Math.floor(testCourse.length % 60);
     const courseDuration = (hours) ? `${hours}h ${minutes}min` : `${minutes}min`;
 
     expect(courseTimeEl.textContent).toContain(courseDuration);
@@ -46,9 +46,9 @@ describe('CourseComponent', () => {
   it('should show correct date', () => {
     const courseDate = fixture.debugElement.query(By.css('.date'));
     const courseTitleEl = courseDate.nativeElement;
-    const expectedMonth =  testCourse.creationDate.getMonth() + 1;
-    const expectedDay = testCourse.creationDate.getDate();
-    const expestedYear = testCourse.creationDate.getFullYear().toString().substr(-2);
+    const expectedMonth = new Date(testCourse.date).getMonth() + 1;
+    const expectedDay = new Date(testCourse.date).getDate();
+    const expestedYear = new Date(testCourse.date).getFullYear().toString().substr(-2);
     const courseTitlePipedEl = `${expectedMonth}/${expectedDay}/${expestedYear}`;
     expect(courseTitleEl.textContent).toContain(courseTitlePipedEl);
   });

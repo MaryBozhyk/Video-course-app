@@ -1,19 +1,19 @@
 <header class="header-block">
   <article class="title-block">
-    <h3 class="title">{{ course.title | uppercase }}</h3>
-    <img src="assets/icons/ic_star.svg" alt="img" class="icon star-icon" *ngIf="course.topRated" />
+    <h3 class="title">{{ course.name | uppercase }}</h3>
+    <img src="assets/icons/ic_star.svg" alt="img" class="icon star-icon" *ngIf="course.isTopRated" />
   </article>
   <section class="date-time-block">
     <div class="time-block">
       <p class="time">
         <img src="assets/icons/ic_clock.svg" alt="img" class="icon date-time-icon" />
-        <span>{{ course.duration | duration}}</span>
+        <span>{{ course.length | duration}}</span>
       </p>
     </div>
     <div class="date-block">
       <p class="date">
         <img src="assets/icons/ic_calendar.svg" alt="img" class="icon date-time-icon" />
-        <span>{{ course.creationDate | date: 'shortDate' }}</span>
+        <span>{{ course.date | date: 'shortDate' }}</span>
       </p>
     </div>
   </section>

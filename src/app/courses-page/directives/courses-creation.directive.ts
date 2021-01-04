@@ -4,7 +4,7 @@ import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
   selector: '[appCoursesCreation]'
 })
 export class CoursesCreationDirective implements OnInit {
-  @Input('appCoursesCreation') creationDate: Date;
+  @Input('appCoursesCreation') date: string;
   
   constructor(private el: ElementRef, private render: Renderer2) {}
 
@@ -14,7 +14,7 @@ export class CoursesCreationDirective implements OnInit {
 
   renderStyle(): void {
     const msInDay = 86400000;
-    const creation = this.creationDate.getTime();
+    const creation = new Date(this.date).getTime();
     const now = Date.now();
     const diff = Math.floor((now - creation)/msInDay);
     const isFreshCourse = diff >= 0 && diff <= 14;

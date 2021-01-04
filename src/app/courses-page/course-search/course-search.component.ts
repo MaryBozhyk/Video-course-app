@@ -10,7 +10,7 @@ export class CourseSearchComponent {
 
   value: string;
 
-  onClick(): void {
+  onTypeText(): void {
     this.searchTerm.emit(this.value);
   }
 }

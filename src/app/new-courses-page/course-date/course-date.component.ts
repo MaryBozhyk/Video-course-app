@@ -8,16 +8,18 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 })
 export class CourseDateComponent {
   @Input()
-  get courseDate(): Date | string { return this.date;}
-  set courseDate(date: Date | string) {
-    this.date = (date instanceof Date) ? date.toISOString().substring(0, 10) : date;
+  get courseDate(): string { return this.date; }
+  set courseDate(date: string) {
+    if (date) {
+      this.date = date.substring(0, 10);
+    }
   }
 
-  @Output() courseDateChange = new EventEmitter<Date>();
+  @Output() courseDateChange = new EventEmitter<string>();
 
   private date: string;
 
-  onDateChange(model: Date): void {
+  onDateChange(model: string): void {
     this.courseDateChange.emit(model);
   }
 }

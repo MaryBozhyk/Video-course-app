@@ -2,14 +2,14 @@
 <form class="new-course-form">
     <div class="form-field">
         <label for="title" class="form-field-lable">Title: <span class="required-msg">* required</span></label>
-        <input type="text" id="title" class="form-field-input" placeholder="Text input" [(ngModel)]="value.title" name="title" required/>
+        <input type="text" id="title" class="form-field-input" placeholder="Text input" [(ngModel)]="value.name" name="title" required/>
     </div>
     <div class="form-field">
         <label for="description" class="form-field-lable">Description: <span class="required-msg">* required</span></label>
         <textarea cols="30" rows="5" id="description" class="form-field-input" placeholder="Add description" [(ngModel)]="value.description" name="description" required></textarea>
     </div>
-    <app-course-date [(courseDate)]="value.creationDate"></app-course-date>
-    <app-course-duration [(courseDuration)]="value.duration"></app-course-duration>
+    <app-course-date [(courseDate)]="value.date"></app-course-date>
+    <app-course-duration [(courseDuration)]="value.length"></app-course-duration>
     <app-course-authors></app-course-authors>
     <div class="buttons-block">
         <button type="button" class="cancel-button add-course-btn" (click)="onCancel()">Cancel</button>

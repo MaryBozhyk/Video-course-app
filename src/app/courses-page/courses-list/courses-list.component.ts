@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { 
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 
 import { Course } from '@app/models';
 
@@ -20,5 +26,9 @@ export class CoursesListComponent {
 
   onLoadMoreCourses(): void {
     this.loadmore.emit();
+  }
+
+  trackByFn(index: number, course: Course): number {
+    return course.id;
   }
 }

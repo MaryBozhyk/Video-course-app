@@ -7,37 +7,37 @@ import { CoursesCreationDirective } from './courses-creation.directive';
 
 @Component({
   template: `
-    <div [appCoursesCreation]="mockCourses[0].creationDate">Green border</div>
-    <div [appCoursesCreation]="mockCourses[2].creationDate">Blue border</div>
-    <div [appCoursesCreation]="mockCourses[1].creationDate">No Border</div>
+    <div [appCoursesCreation]="mockCourses[0].date">Green border</div>
+    <div [appCoursesCreation]="mockCourses[2].date">Blue border</div>
+    <div [appCoursesCreation]="mockCourses[1].date">No Border</div>
     <div>No Border</div>
   `
 })
 class TestComponent {
   mockCourses: Course[] = [
     {
-      id: '1',
-      title: 'Video Course 1. Name tag',
-      creationDate: new Date('2020, 11, 16'),
-      duration: 40,
+      id: 1,
+      name: 'Video Course 1. Name tag',
+      date: "2017-06-06T00:07:32+00:00",
+      length: 40,
       description:
         'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-      topRated: true
+      isTopRated: true
     },
     {
-      id: '2',
-      title: 'Video Course 2. Name tag',
-      creationDate: new Date('2020, 08, 28'),
-      duration: 120,
+      id: 2,
+      name: 'Video Course 2. Name tag',
+      date: "2017-06-06T00:07:32+00:00",
+      length: 120,
       description:
         'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-      topRated: true
+      isTopRated: true
     },
     {
-      id: '3',
-      title: 'Video Course 3. Name tag',
-      creationDate: new Date('2020, 11, 31'),
-      duration: 98,
+      id: 3,
+      name: 'Video Course 3. Name tag',
+      date: "2017-06-06T00:07:32+00:00",
+      length: 98,
       description:
         'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
     }

@@ -1,6 +1,6 @@
-<app-course *ngFor="let course of (courses | orderBy)" [course]="course" (delete)="onDeleteCourse($event)"
-    [ngClass]="{topCourse: course?.topRated}" [appCoursesCreation]="course?.creationDate">
+<app-course *ngFor="let course of courses; trackBy: trackByFn" [course]="course" (delete)="onDeleteCourse($event)"
+    [ngClass]="{topCourse: course?.isTopRated}" [appCoursesCreation]="course?.date">
 </app-course>
-<button class="load-more">
+<button class="load-more" *ngIf="courses.length%5 === 0">
     <a class="txt" (click)="onLoadMoreCourses()">Load more</a>
 </button>

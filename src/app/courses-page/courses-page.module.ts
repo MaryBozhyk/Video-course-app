@@ -12,7 +12,6 @@ import { CourseSearchComponent } from './course-search';
 import { CoursesListComponent } from './courses-list';
 import { CourseDialogComponent } from './course-dialog';
 import { CoursesCreationDirective } from './directives';
-import { OrderByPipe, FilterPipe } from './pipes';
 import { CoursesPageRoutingModule } from './courses-page-routing.module';
 import { NewCoursesPageModule } from '@app/new-courses-page';
 
@@ -24,8 +23,6 @@ import { NewCoursesPageModule } from '@app/new-courses-page';
     CoursesListComponent,
     CourseDialogComponent,
     CoursesCreationDirective,
-    OrderByPipe,
-    FilterPipe
   ],
   imports: [
     SharedModule,
@@ -38,6 +35,5 @@ import { NewCoursesPageModule } from '@app/new-courses-page';
     CoursesPageRoutingModule    
   ],
   exports: [CoursesPageComponent],
-  providers: [FilterPipe],
 })
 export class CoursesPageModule {}

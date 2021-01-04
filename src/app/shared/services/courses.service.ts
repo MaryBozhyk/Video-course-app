@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 
+import { HttpCoursesService } from '@app/api';
+import { CONSTANTS } from '@app/constants/constants';
 import { Course } from '@app/models';
+
+import { Observable } from 'rxjs';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -8,64 +12,69 @@ import { v4 as uuidv4 } from 'uuid';
   providedIn: 'root'
 })
 export class CoursesService {
-  private courses: Course[] = [
-    {
-      id: '1',
-      title: 'Video Course 1. Name tag',
-      creationDate: new Date('2020, 11, 16'),
-      duration: 40,
-      description:
-        'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-      topRated: true
-    },
-    {
-      id: '2',
-      title: 'Video Course 2. Name tag',
-      creationDate: new Date('2020, 08, 28'),
-      duration: 120,
-      description:
-        'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
-      topRated: true
-    },
-    {
-      id: '3',
-      title: 'Video Course 3. Name tag',
-      creationDate: new Date('2020, 11, 20'),
-      duration: 98,
-      description:
-        'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
-    }
-  ];
+  private paginationSize: number = CONSTANTS.paginationSize;  
 
-  getCourses(): Course[] {
-    return this.courses;
+  constructor(private httpCourses: HttpCoursesService) {}
+
+  getCourses(): Observable<Course[]> {
+      const requestBody = {
+        count: this.paginationSize.toString(),
+        sort: 'date'
+      };
+
+      return this.httpCourses.getCourses(requestBody);    
   }
 
-  createCourse(course: Partial<Course>): void {
-    this.courses.push(this.formatCourse(course));
-  }
-
-  getCourse(id: string): Course {
-    return this.courses.find(course => course.id === id);
-  }
-
-  updateCourse(course: Partial<Course>): void {
+  createCourse(course: Partial<Course>): Observable<Course> {
     const updatedCourse = this.formatCourse(course);
-
-    this.courses = this.courses.map(course => course.id === updatedCourse.id ? updatedCourse : course);
+    return this.httpCourses.addCourse(updatedCourse);
   }
 
-  removeCourse(course: Course): void {
-    this.courses = this.courses.filter(item => item !== course);
+  getCourse(id: number): Observable<Course> {
+    return this.httpCourses.getCourse(id);
+  }
+
+  getSearchedCourses(searchTerm: string): Observable<Course[]> {
+    const requestBody = {
+      textFragment: searchTerm,
+      sort: 'date'
+    };
+
+    return this.httpCourses.getCourses(requestBody);
+  }
+
+  updateCourse(course: Partial<Course>): Observable<Course> {
+    const updatedCourse = this.formatCourse(course);
+    return this.httpCourses.updateCourse(updatedCourse);
+  }
+
+  removeCourse(course: Course): Observable<Course> {
+    return this.httpCourses.deleteCourse(course.id);
+  }
+
+  loadMoreCourses(): Observable<Course[]> {
+    this.paginationSize += CONSTANTS.paginationSize;
+
+    const requestBody = {
+      count: this.paginationSize.toString(),
+      sort: 'date'
+    }
+
+    return this.httpCourses.getCourses(requestBody);
   }
 
   private formatCourse(course : Partial<Course>): Course {
     return {
       id: course.id || uuidv4(),
-      title: course.title || null,
-      creationDate: new Date(course.creationDate) || null,
-      duration: course.duration || null,
-      description: course.description || null
+      name: course.name || null,
+      date: course.date || null,
+      length: course.length || null,
+      description: course.description || null,
+      authors: {
+        id: course?.authors?.id || null,
+        name: course?.authors?.name || null,
+      },
+      isTopRated: course.isTopRated
     }
   }
 }
