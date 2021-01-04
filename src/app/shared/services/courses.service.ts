@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpCoursesService } from '@app/api';
+import { CONSTANTS } from '@app/constants/constants';
 import { Course } from '@app/models';
 
 import { Observable } from 'rxjs';
@@ -11,18 +12,17 @@ import { v4 as uuidv4 } from 'uuid';
   providedIn: 'root'
 })
 export class CoursesService {
-
-  private paginationSize: number = 5;
+  private paginationSize: number = CONSTANTS.paginationSize;  
 
   constructor(private httpCourses: HttpCoursesService) {}
 
   getCourses(): Observable<Course[]> {
-    const requestBody = {
-      count: this.paginationSize,
-      sort: 'date'
-    }
+      const requestBody = {
+        count: this.paginationSize.toString(),
+        sort: 'date'
+      };
 
-    return this.httpCourses.getCourses(requestBody);
+      return this.httpCourses.getCourses(requestBody);    
   }
 
   createCourse(course: Partial<Course>): Observable<Course> {
@@ -34,11 +34,12 @@ export class CoursesService {
     return this.httpCourses.getCourse(id);
   }
 
-  getSearchedCourses(searchTerm: string) {
+  getSearchedCourses(searchTerm: string): Observable<Course[]> {
     const requestBody = {
       textFragment: searchTerm,
       sort: 'date'
-    }
+    };
+
     return this.httpCourses.getCourses(requestBody);
   }
 
@@ -52,10 +53,10 @@ export class CoursesService {
   }
 
   loadMoreCourses(): Observable<Course[]> {
-    this.paginationSize += 5;
+    this.paginationSize += CONSTANTS.paginationSize;
 
     const requestBody = {
-      count: this.paginationSize,
+      count: this.paginationSize.toString(),
       sort: 'date'
     }
 

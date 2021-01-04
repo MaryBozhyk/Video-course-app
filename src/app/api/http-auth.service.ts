@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { LoginUser, Token, UserInfo } from '@app/models';
+import { CONSTANTS } from '@app/constants/constants';
 
 import { Observable } from 'rxjs';
 
@@ -9,15 +10,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpAuthService {
-  url: string = 'http://localhost:3004';
-
   constructor(private http: HttpClient) { }
 
   getAuthToken(userInfo: LoginUser): Observable<Token> {
-    return this.http.post<Token>(`${this.url}/auth/login`, userInfo);
+    return this.http.post<Token>(`${CONSTANTS.baseUrl}/auth/login`, userInfo);
   }
 
   getUserInfo(token: Token): Observable<UserInfo> {
-    return this.http.post<UserInfo>(`${this.url}/auth/userinfo`, token);
+    return this.http.post<UserInfo>(`${CONSTANTS.baseUrl}/auth/userinfo`, token);
   }
 }

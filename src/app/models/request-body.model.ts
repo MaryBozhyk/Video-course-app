@@ -1,6 +1,6 @@
 export interface RequestBody {
-    start?: number;
-    count?: number;
+    start?: string;
+    count?: string;
     sort?: string;
     textFragment?: string;
 }

@@ -1,5 +1,4 @@
 @import 'styles/variables';
-@import 'styles/mixins';
 
 :host {
   margin: 21px auto 0 85px;
@@ -15,28 +14,4 @@
   width: 240px;
   margin-right: 12px;
   padding: 9px 12px;
-}
-
-.search-btn {
-  @include change-focus-view(color(oliveShadow));
-  line-height: 30px;
-  letter-spacing: -0.08px;
-  color: color(white);
-  font-size: 14px;
-  font-family: font(regular);
-  text-transform: none;
-  font-weight: 600;
-  border-radius: 3px;
-  background: color(olive1);
-  padding: 3px 17px;
-  border: none;
-
-  &:hover {
-    cursor: pointer;
-    background-color: color(lasPalmas);
-  }
-
-  &:active {
-    background-color: color(vidaLoca);
-  }
 }

@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Course } from '@app/models';
+import { CONSTANTS } from '@app/constants/constants';
 import { CoursesService } from '@shared/services';
 
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, switchMap, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-courses-page',
@@ -13,11 +14,17 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class CoursesPageComponent implements OnInit, OnDestroy {
   searchedCourses: Course[];
-  searchTerm: string;
 
   courses$: Observable<Course[]>;
 
   private unsubscribe: Subject<void> = new Subject();
+  private searchSubject$ = new BehaviorSubject<string>(null);
+  private searchedCourses$ = this.searchSubject$.pipe(
+    debounceTime(500),
+    distinctUntilChanged(),
+    filter(searchTerm => searchTerm.length >= CONSTANTS.searchCount),
+    switchMap(searchTerm => this.coursesService.getSearchedCourses(searchTerm))
+  );
 
   constructor(private coursesService: CoursesService) {}
 
@@ -35,8 +42,8 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe)
     ).subscribe(
       () => {
-        this.courses$ = this.searchTerm 
-          ? this.coursesService.getSearchedCourses(this.searchTerm) 
+        this.courses$ = this.searchSubject$.value.length >= CONSTANTS.searchCount
+          ? this.searchedCourses$
           : this.coursesService.getCourses();
       },
       (err) => console.error(err),
@@ -48,7 +55,12 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   }
 
   onSearchCourse(searchTerm: string): void {
-    this.searchTerm = searchTerm;
-    this.courses$ = this.coursesService.getSearchedCourses(searchTerm);
+    this.searchSubject$.next(searchTerm);
+
+    if (!searchTerm) {
+      this.courses$ = this.coursesService.getCourses();
+    } else if (searchTerm.length >= CONSTANTS.searchCount) {
+      this.courses$ = this.searchedCourses$;
+    }
   }
 }
