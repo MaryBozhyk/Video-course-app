@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from '@app/app.component';
-import { CoreModule, httpInterceptorProviders } from '@app/core';
+import { CoreModule, httpInterceptorProviders, RootStoreModule } from '@app/core';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
 import { FooterModule } from '@shared/components/footer';
@@ -22,6 +22,7 @@ import { SpinnerModule } from '@shared/components/spinner';
     HeaderModule,
     LoginButtonsModule,
     SpinnerModule.forRoot(),
+    RootStoreModule,
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders],

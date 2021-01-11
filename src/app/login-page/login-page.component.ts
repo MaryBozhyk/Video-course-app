@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
-import { AuthenticationService } from '@app/core';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+
+import { Store } from '@ngrx/store';
+import * as AuthActions from '@app/core/@ngrx/authentication/auth.actions';
 
 @Component({
   selector: 'app-login-page',
@@ -27,8 +26,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   
   constructor(
     private fb: FormBuilder,
-    private auth: AuthenticationService,
-    private router: Router
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -46,12 +44,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       password: this.password.value
     }
 
-    this.auth.login(userData).pipe(
-      takeUntil(this.unsubscribe)
-    ).subscribe(
-      () => this.router.navigate(['courses']),
-      (err) => console.error(err),
-    )
+    this.store.dispatch(AuthActions.login({ userData }));
   }
 
   private buildForm(): void {

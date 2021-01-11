@@ -17,12 +17,12 @@ export class CoursesService {
   constructor(private httpCourses: HttpCoursesService) {}
 
   getCourses(): Observable<Course[]> {
-      const requestBody = {
-        count: this.paginationSize.toString(),
-        sort: 'date'
-      };
+    const requestBody = {
+      count: this.paginationSize.toString(),
+      sort: 'date'
+    };
 
-      return this.httpCourses.getCourses(requestBody);    
+    return this.httpCourses.getCourses(requestBody);
   }
 
   createCourse(course: Partial<Course>): Observable<Course> {

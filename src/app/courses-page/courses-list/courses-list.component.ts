@@ -15,7 +15,7 @@ import { Course } from '@app/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesListComponent {
-  @Input() courses: Course[];
+  @Input() courses: ReadonlyArray<Course>;
 
   @Output() delete = new EventEmitter<Course>();
   @Output() loadmore = new EventEmitter<void>();

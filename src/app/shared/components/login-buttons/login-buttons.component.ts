@@ -1,7 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '@app/core';
-import { Subscription } from 'rxjs';
+
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { Store, select } from '@ngrx/store';
+import * as AuthActions from '@app/core/@ngrx/authentication/auth.actions';
+import { selectAuthData } from '@app/core/@ngrx/authentication';
+import { UserInfo } from '@app/models';
 
 @Component({
   selector: 'app-login-buttons',
@@ -11,27 +17,43 @@ import { Subscription } from 'rxjs';
 export class LoginButtonsComponent implements OnInit, OnDestroy {
   userName: string;
 
-  private sub: Subscription;
+  private unsubscribe$: Subject<void> = new Subject();
 
   constructor(
-    private auth: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
-    const token = {token: this.auth.getLocalStorageData()?.token}
-    this.sub = this.auth.getUserInfo(token).subscribe(
-      userData => this.userName = userData?.name?.first + ' ' + userData?.name?.last,
-      err => console.error(err)
-    );
+    let observer: any = {
+      next: (userData: UserInfo) => {
+        if (userData) {
+          this.userName = userData?.name?.first + ' ' + userData?.name?.last;
+        }
+      },
+      error(err) {
+        console.error(err); 
+      },
+      complete() {
+        console.log('Stream is completed');
+      }
+    };
+
+    this.store
+      .pipe(
+        select(selectAuthData),
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe(observer);
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   onLogout(): void {
-    this.auth.logout();
+    this.store.dispatch(AuthActions.logout());
     this.router.navigate(['login']);
   }
 }
