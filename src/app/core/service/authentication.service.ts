@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpAuthService } from '@app/api';
+import { CONSTANTS } from '@app/constants/constants';
 import { LoginUser, UserInfo } from '@app/models';
 
 import { Observable, of } from 'rxjs';
@@ -10,19 +11,13 @@ import { switchMap, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private readonly authKey: string = 'Video_course_user';
-
   constructor(private httpAuth: HttpAuthService) {}
 
   login(value: LoginUser): Observable<UserInfo> {
     return this.httpAuth.getAuthToken(value).pipe(
-      tap(token => window.localStorage.setItem(this.authKey, JSON.stringify({...token, ...value}))),
+      tap(token => window.localStorage.setItem(CONSTANTS.authKey, JSON.stringify({...token, ...value}))),
       switchMap(token => this.getUserInfo(token)),
     );
-  }
-
-  logout(): void {
-    window.localStorage.removeItem(this.authKey);
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -31,7 +26,7 @@ export class AuthenticationService {
   }
 
   getLocalStorageData(): LoginUser {
-    return JSON.parse(window.localStorage.getItem(this.authKey));
+    return JSON.parse(window.localStorage.getItem(CONSTANTS.authKey));
   }
 
   getUserInfo(token): Observable<UserInfo> {
