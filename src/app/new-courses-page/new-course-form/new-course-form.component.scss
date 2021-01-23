@@ -3,6 +3,7 @@
 
 @include form-field(color(gunPowder), font(semiBold));
 @include new-course-input;
+@include validation-error-field;
 
 :host {
   display: block;
@@ -11,7 +12,7 @@
   box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1), 0 2px 10px 0 rgba(29, 30, 38, 0.15);
   padding: 24px;
   width: 730px;
-  height: 636px;
+  min-height: 636px;
 }
 
 .new-course-header {
@@ -22,6 +23,9 @@
   text-align: left;
   font-weight: 600;
   margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .new-course-form {
@@ -63,6 +67,12 @@
   &:active {
     background-color: color(vidaLoca);
   }
+
+  &:disabled {
+    cursor: unset;
+    background-color: color(athensGray);
+    color: color(manatee);
+  }
 }
 
 .cancel-button {
@@ -80,4 +90,10 @@
     background-color: color(manatee);
     color: color(white);
   }
+}
+
+.help-block {
+  height: 14px;
+  font-size: 12px;
+  color: color(brighRed);
 }

@@ -70,10 +70,7 @@ export class CoursesService {
       date: course.date || null,
       length: course.length || null,
       description: course.description || null,
-      authors: {
-        id: course?.authors?.id || null,
-        name: course?.authors?.name || null,
-      },
+      authors: course?.authors || null,
       isTopRated: course.isTopRated
     }
   }

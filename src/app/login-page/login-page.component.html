@@ -2,15 +2,22 @@
 <section class="login-block">
     <header class="login-header">
         Login
+        <span class="help-block" *ngIf="this.loginError$ | async">Wrong e-mail or password</span>
     </header>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-field">
+        <div class="form-field" [ngClass]="{'has-error': validationMessage.login}">
             <label for="login" class="form-field-lable">Login: <span class="required-msg">* required</span></label>
-            <input type="text" id="login" formControlName="login" class="form-field-input" placeholder="Enter login"/>
+            <input type="text" id="login" formControlName="login" class="form-field-input" placeholder="Enter login" (blur)="onBlur($event)"/>
+            <div class="help-block">
+                <span *ngIf="validationMessage">{{ validationMessage.login }}</span>
+            </div>
         </div>
-        <div class="form-field">
+        <div class="form-field" [ngClass]="{'has-error': validationMessage.password}">
             <label for="password" class="form-field-lable">Password: <span class="required-msg">* required</span></label>
-            <input type="text" id="password" formControlName="password" class="form-field-input" placeholder="Enter password"/>
+            <input type="text" id="password" formControlName="password" class="form-field-input" placeholder="Enter password" (blur)="onBlur($event)"/>
+            <div class="help-block">
+                <span *ngIf="validationMessage">{{ validationMessage.password }}</span>
+            </div>
         </div>
         <div class="buttons-block">
             <a class="forgot-pass-link">Forgot password?</a>

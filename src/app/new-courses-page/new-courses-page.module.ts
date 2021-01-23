@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
 import { HeaderModule } from '@shared/components/header';
@@ -22,10 +22,10 @@ import { CourseAuthorsComponent } from './course-authors';
   ],
   imports: [
     SharedModule,
-    FormsModule,
     BreadcrumbsModule,
     HeaderModule,
     LoginButtonsModule,
+    ReactiveFormsModule,
     RouterModule
   ],
   exports: [NewCoursesPageComponent]

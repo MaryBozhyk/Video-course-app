@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-course-search',
@@ -8,9 +9,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class CourseSearchComponent {
   @Output() searchTerm = new EventEmitter<string>();
 
-  value: string;
+  searchText: FormControl = new FormControl('');
 
   onTypeText(): void {
-    this.searchTerm.emit(this.value);
+    this.searchTerm.emit(this.searchText.value);
   }
 }

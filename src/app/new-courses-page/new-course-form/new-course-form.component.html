@@ -1,18 +1,64 @@
-<header class="new-course-header">{{courseTitle}}</header>
-<form class="new-course-form">
-    <div class="form-field">
-        <label for="title" class="form-field-lable">Title: <span class="required-msg">* required</span></label>
-        <input type="text" id="title" class="form-field-input" placeholder="Text input" [(ngModel)]="value.name" name="title" required/>
+<header class="new-course-header">
+    {{courseTitle}}
+    <span class="help-block" *ngIf="this.loadCoursesError">Saving course error</span>
+</header>
+<form class="new-course-form" [formGroup]="courseForm" (ngSubmit)="onSave()">
+    <div class="form-field" [ngClass]="{'has-error': validationMessage.name}">
+        <label for="name" class="form-field-lable">Title: 
+            <span class="help-block" *ngIf="validationMessage.name; else requiredMessage">{{ validationMessage.name }}</span>
+            <ng-template #requiredMessage>
+                <span class="required-msg">* required</span>
+            </ng-template>
+        </label>
+        <input 
+            type="text" 
+            id="name" 
+            formControlName="name" 
+            class="form-field-input" 
+            placeholder="Text input" 
+            name="title" 
+            (blur)="onBlur($event)"/>
     </div>
-    <div class="form-field">
-        <label for="description" class="form-field-lable">Description: <span class="required-msg">* required</span></label>
-        <textarea cols="30" rows="5" id="description" class="form-field-input" placeholder="Add description" [(ngModel)]="value.description" name="description" required></textarea>
+    <div class="form-field" [ngClass]="{'has-error': validationMessage.description}">
+        <label for="description" class="form-field-lable">Description: 
+            <span class="help-block" *ngIf="validationMessage.description; else requiredMessage">{{ validationMessage.description }}</span>
+            <ng-template #requiredMessage>
+                <span class="required-msg">* required</span>
+            </ng-template>
+        </label>
+        <textarea 
+            cols="30" 
+            rows="5" 
+            id="description" 
+            formControlName="description" 
+            class="form-field-input" 
+            placeholder="Add description" 
+            name="description" 
+            (blur)="onBlur($event)">
+        </textarea>
     </div>
-    <app-course-date [(courseDate)]="value.date"></app-course-date>
-    <app-course-duration [(courseDuration)]="value.length"></app-course-duration>
-    <app-course-authors></app-course-authors>
+    <app-course-date 
+        formControlName="date" 
+        [showErrors]="showFormErrors" 
+        [errorMsg]="validationMessage.date"
+        (click)="onClick('date')">
+    </app-course-date>
+    <app-course-duration 
+        formControlName="length"
+        [showErrors]="showFormErrors"
+        [errorMsg]="validationMessage.length"
+        (click)="onClick('length')">
+    </app-course-duration>
+    <app-course-authors 
+        [authors]="authorsList" 
+        formControlName="authors" 
+        [showErrors]="showFormErrors" 
+        (checkedAuthors)="onReceiveCheckedAuthors($event)"
+        [errorMsg]="validationMessage.authors"
+        (click)="onClick('authors')">
+    </app-course-authors> 
     <div class="buttons-block">
         <button type="button" class="cancel-button add-course-btn" (click)="onCancel()">Cancel</button>
-        <button type="button" class="submit-button add-course-btn" (click)="onSave()">Save</button>
+        <button type="submit" class="submit-button add-course-btn" [disabled]="!courseForm.valid">Save</button>
     </div>        
 </form>

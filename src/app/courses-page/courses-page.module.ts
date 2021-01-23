@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 
 import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
@@ -26,7 +26,7 @@ import { NewCoursesPageModule } from '@app/new-courses-page';
   ],
   imports: [
     SharedModule,
-    FormsModule,
+    ReactiveFormsModule,
     OverlayModule,
     BreadcrumbsModule,
     HeaderModule,

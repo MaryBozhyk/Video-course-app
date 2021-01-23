@@ -1,4 +1,26 @@
-<div class="form-field">
-    <label for="authors" class="form-field-lable">Author: <span class="required-msg">* required</span></label>
-    <input type="text" id="authors" class="form-field-input" placeholder="Start typing" disabled/>
+<div class="form-field" [formGroup]="formGroup" [ngClass]="{'has-error': errorMsg}">
+    <label for="authors" class="form-field-lable">Author: 
+        <span class="help-block" *ngIf="errorMsg; else requiredMessage">{{ errorMsg }}</span>
+        <ng-template #requiredMessage>
+            <span class="required-msg">* required</span>
+        </ng-template>
+    </label>
+    <div id="authors" class="form-field-input">
+        <div class="selected-author" formArrayName="formArray" *ngFor="let value of formArray?.controls; index as i">
+            <input type="text" [formControlName]="i" class="array-input">
+            <img src="assets/icons/ic_close.svg" alt="img" class="delete-icon" (click)="onAuthorDelete(i)"/>
+        </div>
+        <select 
+            name="authors" 
+            class="authors-list" 
+            (change)="onSelectOption(mySelect.value)" 
+            *ngIf="authorsToShow?.length" 
+            #mySelect>
+            <option value="" disabled selected hidden *ngIf="firstSelected; else hasSelected">Please choose</option>
+            <ng-template #hasSelected>
+                <option value=" " selected> </option>
+            </ng-template>
+            <option [value]="author.name" class="author-to-select" *ngFor="let author of authorsToShow">{{author.name}}</option>
+        </select>
+    </div>
 </div>

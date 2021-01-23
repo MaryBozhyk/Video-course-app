@@ -25,26 +25,16 @@ export class LoginButtonsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    let observer: any = {
-      next: (userData: UserInfo) => {
-        if (userData) {
-          this.userName = userData?.name?.first + ' ' + userData?.name?.last;
-        }
-      },
-      error(err) {
-        console.error(err); 
-      },
-      complete() {
-        console.log('Stream is completed');
-      }
-    };
-
     this.store
       .pipe(
         select(selectAuthData),
         takeUntil(this.unsubscribe$)
       )
-      .subscribe(observer);
+      .subscribe((userData: UserInfo) => {
+        if (userData) {
+          this.userName = userData?.name?.first + ' ' + userData?.name?.last;
+        }
+      });
   }
 
   ngOnDestroy(): void {

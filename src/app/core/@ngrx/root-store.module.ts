@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { CoursesStoreModule } from './courses';
 import { AuthStoreModule } from './authentication';
+import { AuthorsStoreModule } from './authors';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from './../../../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
@@ -30,7 +31,8 @@ import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     CoursesStoreModule,
-    AuthStoreModule
+    AuthStoreModule,
+    AuthorsStoreModule
   ]
 })
 export class RootStoreModule { }
