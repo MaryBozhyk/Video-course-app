@@ -16,7 +16,7 @@ import {
   Validators
 } from '@angular/forms';
 
-import { Author, Course, CourseErrors } from '@app/models';
+import { Option, Course, CourseErrors } from '@app/models';
 
 @Component({
   selector: 'app-new-course-form',
@@ -26,7 +26,7 @@ import { Author, Course, CourseErrors } from '@app/models';
 })
 export class NewCourseFormComponent implements OnChanges, OnInit {
   @Input() course: Course;
-  @Input() authorsList: Author[];
+  @Input() authorsList: Option[];
   @Input() loadCoursesError: Error | string;
 
   @Output() newCourse = new EventEmitter<Partial<Course>>();
@@ -36,7 +36,7 @@ export class NewCourseFormComponent implements OnChanges, OnInit {
   showFormErrors: boolean = false;
   courseTitle: string = "New course";
   courseForm: FormGroup;
-  selectedAuthors: Author[];
+  selectedAuthors: Option[];
   validationMessage: CourseErrors = {
     name: '',
     description: '',
@@ -125,7 +125,7 @@ export class NewCourseFormComponent implements OnChanges, OnInit {
     }
   }
 
-  onReceiveCheckedAuthors(authors: Author[]) {
+  onReceiveCheckedAuthors(authors: Option[]) {
     if (authors && this.courseForm.valid) {
       this.authors.setValue([]);
       this.newCourse.emit(

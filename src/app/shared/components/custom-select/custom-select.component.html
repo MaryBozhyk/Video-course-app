@@ -1,26 +1,26 @@
 <div class="form-field" [formGroup]="formGroup" [ngClass]="{'has-error': errorMsg}">
-    <label for="authors" class="form-field-lable">Author: 
+    <label for="options" class="form-field-lable">{{label}}: 
         <span class="help-block" *ngIf="errorMsg; else requiredMessage">{{ errorMsg }}</span>
         <ng-template #requiredMessage>
             <span class="required-msg">* required</span>
         </ng-template>
     </label>
-    <div id="authors" class="form-field-input">
-        <div class="selected-author" formArrayName="formArray" *ngFor="let value of formArray?.controls; index as i">
+    <div id="options" class="form-field-input">
+        <div class="selected-option" formArrayName="formArray" *ngFor="let value of formArray?.controls; index as i">
             <input type="text" [formControlName]="i" class="array-input">
-            <img src="assets/icons/ic_close.svg" alt="img" class="delete-icon" (click)="onAuthorDelete(i)"/>
+            <img src="assets/icons/ic_close.svg" alt="img" class="delete-icon" (click)="onOptionDelete(i)"/>
         </div>
         <select 
-            name="authors" 
-            class="authors-list" 
+            name="options" 
+            class="options-list" 
             (change)="onSelectOption(mySelect.value)" 
-            *ngIf="authorsToShow?.length" 
+            *ngIf="optionsToShow?.length" 
             #mySelect>
             <option value="" disabled selected hidden *ngIf="firstSelected; else hasSelected">Please choose</option>
             <ng-template #hasSelected>
-                <option value=" " selected> </option>
+                <option value="" selected>...</option>
             </ng-template>
-            <option [value]="author.name" class="author-to-select" *ngFor="let author of authorsToShow">{{author.name}}</option>
+            <option [value]="option.name" class="option-to-select" *ngFor="let option of optionsToShow">{{option.name}}</option>
         </select>
     </div>
 </div>

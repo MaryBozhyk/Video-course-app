@@ -49,14 +49,15 @@
         [errorMsg]="validationMessage.length"
         (click)="onClick('length')">
     </app-course-duration>
-    <app-course-authors 
-        [authors]="authorsList" 
+    <app-custom-select
+        label="Authors"
+        [options]="authorsList" 
         formControlName="authors" 
-        [showErrors]="showFormErrors" 
-        (checkedAuthors)="onReceiveCheckedAuthors($event)"
+        [showErrors]="showFormErrors"
+        (checkedOptions)="onReceiveCheckedAuthors($event)"
         [errorMsg]="validationMessage.authors"
         (click)="onClick('authors')">
-    </app-course-authors> 
+    </app-custom-select> 
     <div class="buttons-block">
         <button type="button" class="cancel-button add-course-btn" (click)="onCancel()">Cancel</button>
         <button type="submit" class="submit-button add-course-btn" [disabled]="!courseForm.valid">Save</button>

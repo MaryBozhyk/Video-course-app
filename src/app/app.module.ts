@@ -10,6 +10,7 @@ import { FooterModule } from '@shared/components/footer';
 import { HeaderModule } from '@shared/components/header';
 import { LoginButtonsModule } from '@shared/components/login-buttons';
 import { SpinnerModule } from '@shared/components/spinner';
+import { CustomSelectModule } from '@shared/components/custom-select';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { SpinnerModule } from '@shared/components/spinner';
     FooterModule,
     HeaderModule,
     LoginButtonsModule,
+    CustomSelectModule,
     SpinnerModule.forRoot(),
     RootStoreModule,
     AppRoutingModule

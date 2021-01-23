@@ -31,7 +31,6 @@ export class AuthorsEffects {
             .getAuthors()
             .pipe(
                 map(authorsData => {
-                    console.log(authorsData, 'authors data')
                     return AuthorsActions.getAuthorsSuccess({ authorsData })
                 }),
                 catchError(error => of(AuthorsActions.getAuthorsError({ error }))

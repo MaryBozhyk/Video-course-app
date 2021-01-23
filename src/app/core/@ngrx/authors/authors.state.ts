@@ -1,7 +1,7 @@
-import { Author } from '@app/models';
+import { Option } from '@app/models';
 
 export interface AuthorsState {
-  authors: Author[];
+  authors: Option[];
   readonly error: Error | string;
 }
 

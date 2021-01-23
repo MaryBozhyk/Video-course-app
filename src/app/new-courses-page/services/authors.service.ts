@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpAuthorsService } from '@app/api';
-import { Author } from '@app/models';
+import { Option } from '@app/models';
 
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class AuthorsService {
   constructor(private httpAuthors: HttpAuthorsService) {}
 
-  getAuthors(): Observable<Author[]> {
+  getAuthors(): Observable<Option[]> {
     return this.httpAuthors.getAuthors();
   }
 }

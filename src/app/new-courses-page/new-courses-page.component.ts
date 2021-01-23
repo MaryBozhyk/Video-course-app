@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-import { Author, Course } from '@app/models';
+import { Option, Course } from '@app/models';
 
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -21,7 +21,7 @@ import { selectAuthorsData } from '@app/core/@ngrx/authors';
 export class NewCoursesPageComponent implements OnInit, OnDestroy {
   course: Course;
 
-  authors$: Observable<Author[]>;
+  authors$: Observable<Option[]>;
   selectCoursesError$: Observable<Error | string>;
 
   private unsubscribe$: Subject<void> = new Subject();
