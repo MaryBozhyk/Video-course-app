@@ -22,10 +22,10 @@
   <p class="information">{{ course.description }}</p>
   <div class="buttons-block">
     <button class="edit-btn btn" [routerLink]="['/courses', course.id]">
-      <img src="assets/icons/ic_edit.svg" alt="img" class="icon"/>Edit
+      <img src="assets/icons/ic_edit.svg" alt="img" class="icon"/>{{ 'PAGES.COURSES_PAGE.EDIT' | translate }}
     </button>
     <button class="delete-btn btn" cdkOverlayOrigin #trigger="cdkOverlayOrigin" (click)="isOpen = true">
-      <img src="assets/icons/ic_delete.svg" alt="img" class="icon"/>Delete
+      <img src="assets/icons/ic_delete.svg" alt="img" class="icon"/>{{ 'PAGES.COURSES_PAGE.DELETE' | translate }}
     </button>
   </div>
 </section>

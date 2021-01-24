@@ -1,0 +1,77 @@
+{
+    "PAGES": {
+        "COURSES_PAGE": {
+            "EDIT": "Edit",
+            "DELETE": "Delete",
+            "DELETE_COURSE": "Delete course?",
+            "DELETE_CONFIRMATION": "Are you sure you want to delete",
+            "YES_DELETE": "Yes, delete",
+            "TYPE_TO_SEARCH": "Type to search",
+            "LOAD_MORE": "Load more",
+            "ADD_COURSE": "Add course",
+            "ADD_NEW_COURSE": "No data. Feel free to add new course."
+        },
+        "ERROR_PAGE": {
+            "GO_TO_COURSES_PAGE": "Go to courses page"
+        },
+        "LOGIN_PAGE": {
+            "LOGIN": "Login",
+            "LOGIN_PAGE": "Login",
+            "MAKE_LOGIN": "Login",
+            "WRONG_EMAIL_OR_PASSWORD": "Wrong e-mail or password",
+            "ENTER_LOGIN": "Enter login",
+            "PASSWORD": "Password",
+            "ENTER_PASSWORD": "Enter password",
+            "FORGOT_PASSWORD": "Forgot password?",
+            "LOGIN_REQUIRED_MESSAGE": "Please enter login",
+            "PASSWORD_REQUIRED_MESSAGE": "Please enter password",
+            "PASSWORD_MIN_LENGTH_MESSAGE": "Password must be longer that 4 symbols"
+        },
+        "NEW_COURSES_PAGE": {
+            "DATE": "Date",
+            "MINUTES": "minutes",
+            "REQUIRED_FIELD": "Required field",
+            "DURATION": "Duration",
+            "SAVING_COURSE_ERROR": "Saving course error",
+            "TITLE": "Title",
+            "ADD_TITLE": "Add title",
+            "DESCRIPTION": "Description",
+            "ADD_DESCRIPTION": "Add description",
+            "AUTHORS": "Authors",
+            "SAVE": "Save",
+            "TITLE_REQUIRED_MESSAGE": "*Please enter title",
+            "TITLE_MAX_LENGTH_MESSAGE": "*Max length 50 symbols",
+            "DESCRIPTION_REQUIRED_MESSAGE": "*Please enter description",
+            "DESCRIPTION_MAX_LENGTH_MESSAGE": "*Max length 500 symbols",
+            "DATE_REQUIRED_MESSAGE": "*Please enter date",
+            "DATE_PATTERN_MESSAGE": "*Doesn't feet pattern dd/mm/yyyy",
+            "DURATION_REQUIRED_MESSAGE": "*Please enter duration",
+            "DURATION_PATTERN_MESSAGE": "*Only digits can be used",
+            "AUTHORS_REQUIRED_MESSAGE": "*Please enter authors",
+            "NEW_COURSE": "New course",
+            "EDIT_COURSE": "Edit course"
+        }
+    },
+    "SHARED": {
+        "HEADER": {
+            "VIDEO_COURSE": "Video Course",
+            "EN": "en",
+            "UA": "ua"
+        },
+        "CUSTOM_SELECT": {
+            "PLEASE_CHOOSE": "Please choose"
+        },
+        "FOOTER": {
+            "COPYRIGHT": "Copyright",
+            "ALL_RIGHTS_RESERVED": "All rights reserved."
+        },
+        "LOGIN_BUTTONS": {
+            "LOG_OUT": "Log out"
+        },
+        "SHARED": {
+            "REQUIRED": "* required",
+            "CANCEL": "Cancel",
+            "COURSES": "Courses"
+        }
+    }
+}

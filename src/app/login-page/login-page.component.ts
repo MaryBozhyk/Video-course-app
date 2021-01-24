@@ -9,6 +9,8 @@ import { Store, select } from '@ngrx/store';
 import * as AuthActions from '@app/core/@ngrx/authentication/auth.actions';
 import { selectIsLoggedError } from '@app/core/@ngrx/authentication';
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -33,17 +35,18 @@ export class LoginPageComponent implements OnInit {
 
   private validationMessagesMap = {
     login: {
-      required: 'Please enter login'
+      required: this.translateService.instant('PAGES.LOGIN_PAGE.LOGIN_REQUIRED_MESSAGE')
     },
     password: {
-      required: 'Please enter password',      
-      minlength: 'Password must be longer that 4 symbols'
+      required: this.translateService.instant('PAGES.LOGIN_PAGE.PASSWORD_REQUIRED_MESSAGE'),      
+      minlength: this.translateService.instant('PAGES.LOGIN_PAGE.PASSWORD_MIN_LENGTH_MESSAGE')
     }
   };
   
   constructor(
     private fb: FormBuilder,
-    private store: Store
+    private store: Store,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {

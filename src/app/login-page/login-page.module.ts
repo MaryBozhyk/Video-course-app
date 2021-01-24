@@ -6,10 +6,13 @@ import { LoginPageComponent } from './login-page.component';
 import { LoginPageRoutingModule } from './login-page-routing.module';
 import { HeaderModule } from '@shared/components/header';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   declarations: [LoginPageComponent],
   imports: [
     CommonModule,
+    TranslateModule,
     HeaderModule,
     ReactiveFormsModule,
     LoginPageRoutingModule

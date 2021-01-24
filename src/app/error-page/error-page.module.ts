@@ -5,10 +5,13 @@ import { ErrorPageComponent } from './error-page.component';
 import { ErrorPageRoutingModule } from './error-page-routing.module';
 import { HeaderModule } from '@shared/components/header';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   declarations: [ErrorPageComponent],
   imports: [
     CommonModule,
+    TranslateModule,
     HeaderModule,
     ErrorPageRoutingModule
   ]

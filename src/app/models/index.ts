@@ -6,3 +6,4 @@ export { UserInfo } from './user-info.model';
 export { RequestBody } from './request-body.model';
 export { CourseErrors } from './course-errors.model';
 export { Option } from './option.model';
+export { Language } from './language.enum';

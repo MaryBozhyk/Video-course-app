@@ -1,0 +1,77 @@
+{
+    "PAGES": {
+        "COURSES_PAGE": {
+            "EDIT": "Редагувати",
+            "DELETE": "Видалити",
+            "DELETE_COURSE": "Видалити курс?",
+            "DELETE_CONFIRMATION": "Ви впевнені, що хочете видалити",
+            "YES_DELETE": "Так, видалити",
+            "TYPE_TO_SEARCH": "Введіть для пошуку",
+            "LOAD_MORE": "Завантажити більше",
+            "ADD_COURSE": "Додати курс",
+            "ADD_NEW_COURSE": "Список курсів порожній. Додайте новий курс."
+        },
+        "ERROR_PAGE": {
+            "GO_TO_COURSES_PAGE": "Повернутись на головну сторінку"
+        },
+        "LOGIN_PAGE": {
+            "LOGIN": "Логін",
+            "LOGIN_PAGE": "Вхід",
+            "MAKE_LOGIN": "Залогінитись",
+            "WRONG_EMAIL_OR_PASSWORD": "Неправильний логін або пароль",
+            "ENTER_LOGIN": "Введіть логін",
+            "PASSWORD": "Пароль",
+            "ENTER_PASSWORD": "Введіть пароль",
+            "FORGOT_PASSWORD": "Забули пароль?",
+            "LOGIN_REQUIRED_MESSAGE": "Будь ласка, введіть логін",
+            "PASSWORD_REQUIRED_MESSAGE": "Будь ласка, введіть пароль",
+            "PASSWORD_MIN_LENGTH_MESSAGE": "Довжина паролю повинна бути більшою 4-ох символів"
+        },
+        "NEW_COURSES_PAGE": {
+            "DATE": "Дата",
+            "MINUTES": "хвилини",
+            "REQUIRED_FIELD": "Обов'язкове поле",
+            "DURATION": "Тривалість",
+            "SAVING_COURSE_ERROR": "Помилка під час зберігання курсу",
+            "TITLE": "Назва",
+            "ADD_TITLE": "Додати назву",
+            "DESCRIPTION": "Опис",
+            "ADD_DESCRIPTION": "Додати опис",
+            "AUTHORS": "Автори",
+            "SAVE": "Зберегти",
+            "TITLE_REQUIRED_MESSAGE": "*Будь ласка, додайте назву",
+            "TITLE_MAX_LENGTH_MESSAGE": "*Довжина не повинна перевищувати 50 символів",
+            "DESCRIPTION_REQUIRED_MESSAGE": "*Будь ласка, додайте опис",
+            "DESCRIPTION_MAX_LENGTH_MESSAGE": "*Довжина не повинна перевищувати 500 символів",
+            "DATE_REQUIRED_MESSAGE": "*Будь ласка, додайте дату",
+            "DATE_PATTERN_MESSAGE": "*Не відповідає шаблону dd/mm/yyyy",
+            "DURATION_REQUIRED_MESSAGE": "*Будь ласка, додайте тривалість курсу",
+            "DURATION_PATTERN_MESSAGE": "*Можна використовувати лише цифри",
+            "AUTHORS_REQUIRED_MESSAGE": "*Будь ласка, додайте авторів",
+            "NEW_COURSE": "Новий курс",
+            "EDIT_COURSE": "Редагувати курс"
+        }
+    },
+    "SHARED": {
+        "HEADER": {
+            "VIDEO_COURSE": "Відео курс",
+            "EN": "англ",
+            "UA": "укр"
+        },
+        "CUSTOM_SELECT": {
+            "PLEASE_CHOOSE": "Будь ласка, оберіть"
+        },
+        "FOOTER": {
+            "COPYRIGHT": "Авторське право",
+            "ALL_RIGHTS_RESERVED": "Всі права захищені."
+        },
+        "LOGIN_BUTTONS": {
+            "LOG_OUT": "Вилогінитись"
+        },
+        "SHARED": {
+            "REQUIRED": "* обов'язкове поле",
+            "CANCEL": "Відмінити",
+            "COURSES": "Курси"
+        }
+    }
+}
