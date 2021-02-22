@@ -1,14 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-import { Course } from '@app/models';
+import { Option, Course } from '@app/models';
 
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { Store, select } from '@ngrx/store';
 import { selectEditedData } from '@app/core/@ngrx';
 import * as CoursesActions from '@app/core/@ngrx/courses/courses.actions';
+import * as AuthorsActions from '@app/core/@ngrx/authors/authors.actions';
+import { selectCoursesError } from '@app/core/@ngrx/courses';
+import { selectAuthorsData } from '@app/core/@ngrx/authors';
+
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-courses-page',
@@ -18,46 +23,40 @@ import * as CoursesActions from '@app/core/@ngrx/courses/courses.actions';
 export class NewCoursesPageComponent implements OnInit, OnDestroy {
   course: Course;
 
+  authors$: Observable<Option[]>;
+  selectCoursesError$: Observable<Error | string>;
+  newCourse: string = this.translateService.instant('PAGES.NEW_COURSES_PAGE.NEW_COURSE');
+
   private unsubscribe$: Subject<void> = new Subject();
 
   constructor(
     private store: Store,
     private router: Router,
     private route: ActivatedRoute,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
-      let observer: any = {
-        next: (course: Course) => {
-          if (course) {
-            this.course = { ...course };
-          }
-        },
-        error(err) {
-          console.log(err); 
-        },
-        complete() {
-          console.log('Stream is completed');
-        }
-      };
-  
-      this.store
-        .pipe(
-          select(selectEditedData),
-          takeUntil(this.unsubscribe$)
-        )
-        .subscribe(observer);
-  
-      observer = {
-        ...observer,
-        next: (params: ParamMap) => {
-          const id = params.get('id');
+    this.store
+      .pipe(
+        select(selectEditedData),
+        takeUntil(this.unsubscribe$)
+      ).subscribe((course) => this.course = course);
+
+    this.route.paramMap
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      ).subscribe((params: ParamMap) => {
+        const id = params.get('id');
           if (id) {
             this.store.dispatch(CoursesActions.getCourse({ courseID: +id }));
           }
-        }
-      }; 
-      this.route.paramMap.subscribe(observer);
+      }
+    );
+    
+    this.store.dispatch(AuthorsActions.getAuthors());
+    this.authors$ = this.store.pipe(select(selectAuthorsData));
+    this.selectCoursesError$ = this.store.pipe(select(selectCoursesError));
   }
 
   ngOnDestroy(): void {

@@ -67,3 +67,22 @@
     }
   }
 }
+
+@mixin validation-error-field {
+  .has-error {
+    .form-field-input {
+      border-color: color(brighRed);
+    }
+  
+    .form-field-lable,
+    .required-msg {
+      color: color(brighRed);
+    }
+  }
+
+  .help-block {
+    height: 14px;
+    font-size: 10px;
+    color: color(brighRed);
+  }
+}

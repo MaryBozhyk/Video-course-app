@@ -1,1 +1,1 @@
-<input type="text" placeholder="Type to search" class="courses-search" [(ngModel)]="value" (keyup)="onTypeText()">
+<input type="text" placeholder="{{ 'PAGES.COURSES_PAGE.TYPE_TO_SEARCH' | translate }}" class="courses-search" [formControl]="searchText" (keyup)="onTypeText()">

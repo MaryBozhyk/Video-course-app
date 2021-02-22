@@ -1,20 +1,27 @@
 <app-header></app-header>
 <section class="login-block">
     <header class="login-header">
-        Login
+        {{ 'PAGES.LOGIN_PAGE.LOGIN_PAGE' | translate }}
+        <span class="help-block" *ngIf="this.loginError$ | async">{{ 'PAGES.LOGIN_PAGE.WRONG_EMAIL_OR_PASSWORD' | translate }}</span>
     </header>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-field">
-            <label for="login" class="form-field-lable">Login: <span class="required-msg">* required</span></label>
-            <input type="text" id="login" formControlName="login" class="form-field-input" placeholder="Enter login"/>
+        <div class="form-field" [ngClass]="{'has-error': validationMessage.login}">
+            <label for="login" class="form-field-lable">{{ 'PAGES.LOGIN_PAGE.LOGIN' | translate }}: <span class="required-msg">{{ 'SHARED.SHARED.REQUIRED' | translate }}</span></label>
+            <input type="text" id="login" formControlName="login" class="form-field-input" placeholder="{{ 'PAGES.LOGIN_PAGE.ENTER_LOGIN' | translate }}" (blur)="onBlur($event)"/>
+            <div class="help-block">
+                <span *ngIf="validationMessage">{{ validationMessage.login }}</span>
+            </div>
         </div>
-        <div class="form-field">
-            <label for="password" class="form-field-lable">Password: <span class="required-msg">* required</span></label>
-            <input type="text" id="password" formControlName="password" class="form-field-input" placeholder="Enter password"/>
+        <div class="form-field" [ngClass]="{'has-error': validationMessage.password}">
+            <label for="password" class="form-field-lable">{{ 'PAGES.LOGIN_PAGE.PASSWORD' | translate }}: <span class="required-msg">{{ 'SHARED.SHARED.REQUIRED' | translate }}</span></label>
+            <input type="text" id="password" formControlName="password" class="form-field-input" placeholder="{{ 'PAGES.LOGIN_PAGE.ENTER_PASSWORD' | translate }}" (blur)="onBlur($event)"/>
+            <div class="help-block">
+                <span *ngIf="validationMessage">{{ validationMessage.password }}</span>
+            </div>
         </div>
         <div class="buttons-block">
-            <a class="forgot-pass-link">Forgot password?</a>
-            <button type="submit" [disabled]="!loginForm.valid" class="submit-button">Login</button>
+            <a class="forgot-pass-link">{{ 'PAGES.LOGIN_PAGE.FORGOT_PASSWORD' | translate }}</a>
+            <button type="submit" [disabled]="!loginForm.valid" class="submit-button">{{ 'PAGES.LOGIN_PAGE.MAKE_LOGIN' | translate }}</button>
         </div>        
     </form>
 </section>

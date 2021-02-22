@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
 
 import { BreadcrumbsModule } from '@shared/components/breadcrumbs';
@@ -15,6 +15,8 @@ import { CoursesCreationDirective } from './directives';
 import { CoursesPageRoutingModule } from './courses-page-routing.module';
 import { NewCoursesPageModule } from '@app/new-courses-page';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   declarations: [
     CoursesPageComponent,
@@ -26,7 +28,8 @@ import { NewCoursesPageModule } from '@app/new-courses-page';
   ],
   imports: [
     SharedModule,
-    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
     OverlayModule,
     BreadcrumbsModule,
     HeaderModule,

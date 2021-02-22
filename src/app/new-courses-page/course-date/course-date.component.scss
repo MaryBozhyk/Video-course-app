@@ -3,6 +3,7 @@
 
 @include form-field(color(gunPowder), font(semiBold));
 @include new-course-input;
+@include validation-error-field;
 
 .form-field {
   margin-bottom: 12px;

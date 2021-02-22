@@ -1,0 +1,42 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+@include form-field(color(gunPowder), font(semiBold));
+@include new-course-input;
+@include validation-error-field;
+
+.form-field {
+  margin-bottom: 12px;
+  min-width: 312px;
+
+  .options-list {
+    border: none;
+    width: 212px;
+  }
+
+  .form-field-input {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .selected-option {
+    background-color: color(athensGray);
+    padding: 5px 12px;
+    border-radius: 2px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .delete-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 3px;
+  }
+
+  .array-input {
+    border: none;
+  }
+}

@@ -1,9 +1,9 @@
 <header class="popup-header">
-    <p>Delete course?</p>
+    <p>{{ 'PAGES.COURSES_PAGE.DELETE_COURSE' | translate }}</p>
     <img src="assets/icons/ic_close.svg" alt="img" class="close-icon" (click)="cancel.emit()"/>
 </header>
-<main class="popup-text">Are you sure you want to delete {{ course.name | uppercase }}?</main>
+<main class="popup-text">{{ 'PAGES.COURSES_PAGE.DELETE_CONFIRMATION' | translate }} {{ course.name | uppercase }}?</main>
 <footer class="popup-buttons">
-    <button class="cancel-btn popup-btn" (click)="cancel.emit()">Cancel</button>
-    <button class="delete-p-btn popup-btn" (click)="delete.emit()">Yes, delete</button>
+    <button class="cancel-btn popup-btn" (click)="cancel.emit()">{{ 'SHARED.SHARED.CANCEL' | translate }}</button>
+    <button class="delete-p-btn popup-btn" (click)="delete.emit()">{{ 'PAGES.COURSES_PAGE.YES_DELETE' | translate }}</button>
 </footer>

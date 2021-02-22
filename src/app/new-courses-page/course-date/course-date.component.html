@@ -1,4 +1,8 @@
-<div class="form-field">
-    <label for="date" class="form-field-lable">Date: <span class="required-msg">* required</span></label>
-    <input type="date" id="date" class="form-field-input" placeholder="minutes" [ngModel]="courseDate" (ngModelChange)="onDateChange($event)" required/>
+<div class="form-field" [ngClass]="{'has-error': errorMsg}">
+    <label for="date" class="form-field-lable">{{ 'PAGES.NEW_COURSES_PAGE.DATE' | translate }}: <span class="help-block" *ngIf="errorMsg; else requiredMessage">{{ errorMsg }}</span>
+        <ng-template #requiredMessage>
+            <span class="required-msg">{{ 'SHARED.SHARED.REQUIRED' | translate }}</span>
+        </ng-template>
+    </label>
+    <input type="date" id="date" class="form-field-input" placeholder="{{ 'PAGES.NEW_COURSES_PAGE.MINUTES' | translate }}" [formControl]="formControl"/>
 </div>

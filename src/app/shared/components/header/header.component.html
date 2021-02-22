@@ -1,5 +1,11 @@
 <section class="logo">
     <img src="assets/icons/ic_player.svg" alt="logo" class="logo-img">
-    <h1 class="logo-txt">Video Course</h1>
+    <h1 class="logo-txt">{{ 'SHARED.HEADER.VIDEO_COURSE' | translate}}</h1>
 </section>
-<ng-content></ng-content>
+<div class="content-block">
+    <select class="language-select" (change)="onLanguageSelectChange($event)">
+        <option [value]="Language.En" selected>{{ 'SHARED.HEADER.EN' | translate | uppercase }}</option>
+        <option [value]="Language.Ua">{{ 'SHARED.HEADER.UA' | translate | uppercase }}</option>
+    </select>
+    <ng-content></ng-content>
+</div>

@@ -20,7 +20,8 @@ const reducer = createReducer(
     return {
     ...state,
     data,
-    isLoggedIn: true
+    isLoggedIn: true,
+    error: null
     };
   }),
   on(

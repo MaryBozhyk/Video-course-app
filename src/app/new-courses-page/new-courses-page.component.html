@@ -2,8 +2,14 @@
     <app-login-buttons></app-login-buttons>
 </app-header>
 <app-breadcrumbs>
-    <a class="breadcrumbs-txt"> <span routerLink='/courses' class="courses-link">Courses / </span> <b class="breadcrumbs-bold">{{course?.name || "New Course"}}</b></a>
+    <a class="breadcrumbs-txt"> <span routerLink='/courses' class="courses-link">{{ 'SHARED.SHARED.COURSES' | translate }} / </span> <b class="breadcrumbs-bold">{{course?.name || newCourse}}</b></a>
 </app-breadcrumbs>
 <main class="form-section">
-    <app-new-course-form [course]="course" (newCourse)="onCreateNewCourse($event)" (cancel)="onCancel()"></app-new-course-form>
+    <app-new-course-form 
+        [course]="course" 
+        [authorsList]="authors$ | async"
+        [loadCoursesError]="selectCoursesError$ | async"
+        (newCourse)="onCreateNewCourse($event)" 
+        (cancel)="onCancel()">
+    </app-new-course-form>
 </main>
