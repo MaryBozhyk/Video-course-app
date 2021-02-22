@@ -12,6 +12,8 @@ import { NewCoursesPageComponent } from './new-courses-page.component';
 import { CourseDateComponent } from './course-date';
 import { CourseDurationComponent } from './course-duration';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   declarations: [
     NewCourseFormComponent,
@@ -21,6 +23,7 @@ import { CourseDurationComponent } from './course-duration';
   ],
   imports: [
     SharedModule,
+    TranslateModule,
     BreadcrumbsModule,
     HeaderModule,
     LoginButtonsModule,

@@ -13,6 +13,8 @@ import * as AuthorsActions from '@app/core/@ngrx/authors/authors.actions';
 import { selectCoursesError } from '@app/core/@ngrx/courses';
 import { selectAuthorsData } from '@app/core/@ngrx/authors';
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-new-courses-page',
   templateUrl: './new-courses-page.component.html',
@@ -23,36 +25,38 @@ export class NewCoursesPageComponent implements OnInit, OnDestroy {
 
   authors$: Observable<Option[]>;
   selectCoursesError$: Observable<Error | string>;
+  newCourse: string = this.translateService.instant('PAGES.NEW_COURSES_PAGE.NEW_COURSE');
 
   private unsubscribe$: Subject<void> = new Subject();
 
   constructor(
     private store: Store,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
-      this.store
-        .pipe(
-          select(selectEditedData),
-          takeUntil(this.unsubscribe$)
-        ).subscribe((course) => this.course = course);
+    this.store
+      .pipe(
+        select(selectEditedData),
+        takeUntil(this.unsubscribe$)
+      ).subscribe((course) => this.course = course);
 
-      this.route.paramMap
-        .pipe(
-          takeUntil(this.unsubscribe$)
-        ).subscribe((params: ParamMap) => {
-          const id = params.get('id');
-            if (id) {
-              this.store.dispatch(CoursesActions.getCourse({ courseID: +id }));
-            }
-        }
-      );
-      
-      this.store.dispatch(AuthorsActions.getAuthors());
-      this.authors$ = this.store.pipe(select(selectAuthorsData));
-      this.selectCoursesError$ = this.store.pipe(select(selectCoursesError));
+    this.route.paramMap
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      ).subscribe((params: ParamMap) => {
+        const id = params.get('id');
+          if (id) {
+            this.store.dispatch(CoursesActions.getCourse({ courseID: +id }));
+          }
+      }
+    );
+    
+    this.store.dispatch(AuthorsActions.getAuthors());
+    this.authors$ = this.store.pipe(select(selectAuthorsData));
+    this.selectCoursesError$ = this.store.pipe(select(selectCoursesError));
   }
 
   ngOnDestroy(): void {

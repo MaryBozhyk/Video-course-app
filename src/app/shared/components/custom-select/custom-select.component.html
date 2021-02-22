@@ -2,7 +2,7 @@
     <label for="options" class="form-field-lable">{{label}}: 
         <span class="help-block" *ngIf="errorMsg; else requiredMessage">{{ errorMsg }}</span>
         <ng-template #requiredMessage>
-            <span class="required-msg">* required</span>
+            <span class="required-msg">{{ 'SHARED.SHARED.REQUIRED' | translate }}</span>
         </ng-template>
     </label>
     <div id="options" class="form-field-input">
@@ -16,7 +16,7 @@
             (change)="onSelectOption(mySelect.value)" 
             *ngIf="optionsToShow?.length" 
             #mySelect>
-            <option value="" disabled selected hidden *ngIf="firstSelected; else hasSelected">Please choose</option>
+            <option value="" disabled selected hidden *ngIf="firstSelected; else hasSelected">{{ 'SHARED.CUSTOM_SELECT.PLEASE_CHOOSE' | translate }}</option>
             <ng-template #hasSelected>
                 <option value="" selected>...</option>
             </ng-template>

@@ -18,6 +18,8 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { TranslateService } from '@ngx-translate/core';
+
 export const SELECT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CourseDurationComponent),
@@ -56,6 +58,8 @@ export class CourseDurationComponent implements ControlValueAccessor, Validator 
   private _showErrors: boolean = false;
   private _destroy$: Subject<void> = new Subject();
   private _onTouched: () => void = () => {};
+
+  constructor(private translateService: TranslateService) {}
   
   ngOnInit(): void {
     this.formControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
@@ -83,7 +87,7 @@ export class CourseDurationComponent implements ControlValueAccessor, Validator 
   }
   
   validate(c: AbstractControl): ValidationErrors | null {
-    return this.formControl.valid ? null : { invalidForm: { valid: false, message: 'Reqiered field' } };
+    return this.formControl.valid ? null : { invalidForm: { valid: false, message: this.translateService.instant('PAGES.NEW_COURSES_PAGE.REQUIRED_FIELD') } };
   }
   
   private _markFormControlAsTouched(formControl: FormControl) {

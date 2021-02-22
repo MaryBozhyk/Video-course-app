@@ -1,13 +1,13 @@
 <header class="new-course-header">
     {{courseTitle}}
-    <span class="help-block" *ngIf="this.loadCoursesError">Saving course error</span>
+    <span class="help-block" *ngIf="this.loadCoursesError">{{ 'PAGES.NEW_COURSES_PAGE.SAVING_COURSE_ERROR' | translate }}</span>
 </header>
 <form class="new-course-form" [formGroup]="courseForm" (ngSubmit)="onSave()">
     <div class="form-field" [ngClass]="{'has-error': validationMessage.name}">
-        <label for="name" class="form-field-lable">Title: 
+        <label for="name" class="form-field-lable">{{ 'PAGES.NEW_COURSES_PAGE.TITLE' | translate }}: 
             <span class="help-block" *ngIf="validationMessage.name; else requiredMessage">{{ validationMessage.name }}</span>
             <ng-template #requiredMessage>
-                <span class="required-msg">* required</span>
+                <span class="required-msg">{{ 'SHARED.SHARED.REQUIRED' | translate }}</span>
             </ng-template>
         </label>
         <input 
@@ -15,15 +15,15 @@
             id="name" 
             formControlName="name" 
             class="form-field-input" 
-            placeholder="Text input" 
+            placeholder="{{ 'PAGES.NEW_COURSES_PAGE.ADD_TITLE' | translate }}" 
             name="title" 
             (blur)="onBlur($event)"/>
     </div>
     <div class="form-field" [ngClass]="{'has-error': validationMessage.description}">
-        <label for="description" class="form-field-lable">Description: 
+        <label for="description" class="form-field-lable">{{ 'PAGES.NEW_COURSES_PAGE.DESCRIPTION' | translate }}: 
             <span class="help-block" *ngIf="validationMessage.description; else requiredMessage">{{ validationMessage.description }}</span>
             <ng-template #requiredMessage>
-                <span class="required-msg">* required</span>
+                <span class="required-msg">{{ 'SHARED.SHARED.REQUIRED' | translate }}</span>
             </ng-template>
         </label>
         <textarea 
@@ -32,7 +32,7 @@
             id="description" 
             formControlName="description" 
             class="form-field-input" 
-            placeholder="Add description" 
+            placeholder="{{ 'PAGES.NEW_COURSES_PAGE.ADD_DESCRIPTION' | translate }}" 
             name="description" 
             (blur)="onBlur($event)">
         </textarea>
@@ -50,7 +50,7 @@
         (click)="onClick('length')">
     </app-course-duration>
     <app-custom-select
-        label="Authors"
+        label="{{ 'PAGES.NEW_COURSES_PAGE.AUTHORS' | translate }}"
         [options]="authorsList" 
         formControlName="authors" 
         [showErrors]="showFormErrors"
@@ -59,7 +59,7 @@
         (click)="onClick('authors')">
     </app-custom-select> 
     <div class="buttons-block">
-        <button type="button" class="cancel-button add-course-btn" (click)="onCancel()">Cancel</button>
-        <button type="submit" class="submit-button add-course-btn" [disabled]="!courseForm.valid">Save</button>
+        <button type="button" class="cancel-button add-course-btn" (click)="onCancel()">{{ 'SHARED.SHARED.CANCEL' | translate }}</button>
+        <button type="submit" class="submit-button add-course-btn" [disabled]="!courseForm.valid">{{ 'PAGES.NEW_COURSES_PAGE.SAVE' | translate }}</button>
     </div>        
 </form>

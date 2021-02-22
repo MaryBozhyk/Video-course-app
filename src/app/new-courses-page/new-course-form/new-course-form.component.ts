@@ -18,6 +18,8 @@ import {
 
 import { Option, Course, CourseErrors } from '@app/models';
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-new-course-form',
   templateUrl: './new-course-form.component.html',
@@ -34,7 +36,7 @@ export class NewCourseFormComponent implements OnChanges, OnInit {
 
   first: boolean = true;
   showFormErrors: boolean = false;
-  courseTitle: string = "New course";
+  courseTitle: string = this.translateService.instant('PAGES.NEW_COURSES_PAGE.NEW_COURSE');
   courseForm: FormGroup;
   selectedAuthors: Option[];
   validationMessage: CourseErrors = {
@@ -67,28 +69,29 @@ export class NewCourseFormComponent implements OnChanges, OnInit {
 
   private validationMessagesMap = {
     name: {
-      required: '*Please enter title',
-      maxlength: '*Max length 50 symbols'
+      required: this.translateService.instant('PAGES.NEW_COURSES_PAGE.TITLE_REQUIRED_MESSAGE'),
+      maxlength: this.translateService.instant('PAGES.NEW_COURSES_PAGE.TITLE_MAX_LENGTH_MESSAGE')
     },
     description: {
-      required: '*Please enter description',      
-      maxlength: '*Max length 500 symbols'
+      required: this.translateService.instant('PAGES.NEW_COURSES_PAGE.DESCRIPTION_REQUIRED_MESSAGE'),
+      maxlength: this.translateService.instant('PAGES.NEW_COURSES_PAGE.DESCRIPTION_MAX_LENGTH_MESSAGE')
     },
     date: {
-      required: '*Please enter date',      
-      pattern: '*Doesn\'t feet pattern dd/mm/yyyy'
+      required: this.translateService.instant('PAGES.NEW_COURSES_PAGE.DATE_REQUIRED_MESSAGE'),
+      pattern: this.translateService.instant('PAGES.NEW_COURSES_PAGE.DATE_PATTERN_MESSAGE')
     },
     length: {
-      required: '*Please enter duration',      
-      pattern: '*Only digits can be used'
+      required: this.translateService.instant('PAGES.NEW_COURSES_PAGE.DURATION_REQUIRED_MESSAGE'),    
+      pattern: this.translateService.instant('PAGES.NEW_COURSES_PAGE.DURATION_PATTERN_MESSAGE')
     },
     authors: {
-      required: '*Please enter authors'
+      required: this.translateService.instant('PAGES.NEW_COURSES_PAGE.AUTHORS_REQUIRED_MESSAGE')
     }
   };
 
   constructor(
     private fb: FormBuilder,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -102,7 +105,7 @@ export class NewCourseFormComponent implements OnChanges, OnInit {
       this.date.setValue(this.course.date);
       this.length.setValue(this.course.length);
       this.authors.setValue(this.course.authors);
-      this.courseTitle = "Edit course";
+      this.courseTitle = this.translateService.instant('PAGES.NEW_COURSES_PAGE.EDIT_COURSE');
       this.first = false;
     }
   }

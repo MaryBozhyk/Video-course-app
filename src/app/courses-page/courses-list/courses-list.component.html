@@ -2,5 +2,5 @@
     [ngClass]="{topCourse: course?.isTopRated}" [appCoursesCreation]="course?.date">
 </app-course>
 <button class="load-more" *ngIf="courses.length%5 === 0">
-    <a class="txt" (click)="onLoadMoreCourses()">Load more</a>
+    <a class="txt" (click)="onLoadMoreCourses()">{{ 'PAGES.COURSES_PAGE.LOAD_MORE' | translate }}</a>
 </button>
